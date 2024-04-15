@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"create-turbo": "^1.13.2"
+	}
+}

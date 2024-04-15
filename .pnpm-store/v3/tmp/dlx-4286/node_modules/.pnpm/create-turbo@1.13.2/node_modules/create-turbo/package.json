@@ -1,0 +1,56 @@
+{
+  "name": "create-turbo",
+  "version": "1.13.2",
+  "description": "Create a new Turborepo",
+  "homepage": "https://turbo.build/repo",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vercel/turbo",
+    "directory": "packages/create-turbo"
+  },
+  "bugs": {
+    "url": "https://github.com/vercel/turbo/issues"
+  },
+  "bin": {
+    "create-turbo": "dist/cli.js"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "^10.0.0",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^8.0.0",
+    "proxy-agent": "^6.2.2",
+    "rimraf": "^3.0.2",
+    "semver": "^7.3.8",
+    "update-check": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^7.3.1",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.17.2",
+    "@types/rimraf": "^3.0.2",
+    "@types/semver": "^7.3.9",
+    "jest": "^27.4.3",
+    "ts-jest": "^27.1.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.2.2",
+    "@turbo/eslint-config": "0.0.0",
+    "@turbo/telemetry": "0.0.0",
+    "@turbo/tsconfig": "0.0.0",
+    "@turbo/test-utils": "0.0.0",
+    "@turbo/utils": "0.0.0",
+    "@turbo/workspaces": "1.13.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "jest",
+    "lint": "eslint src/",
+    "check-types": "tsc --noEmit",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
+  }
+}
