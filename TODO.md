@@ -36,12 +36,29 @@
   - package comparator
   - bootstrap popout windows
 
+- test to showcase making a new thing there
+- always import as much config as possible
+- have an arkit for the whole thing? with arkit config too?
+
 ## order of works
 
+### for dedi - the first thing
+
+- add all the necessary configs into the packages
+- add a template for vite and chakra
 - dedi is the simplest case, start with that
+- double check files
+  - move the favicon
+  - double check .eslintj/cjs
+
+- copy readmes
+- configure auto github pages deployment too
+
 - once that is fully done with splitting of some code logic into the packages
 
 - move one thing fully
+
+### other packages and apps
 
 - move the packages
 - move the apps
