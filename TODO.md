@@ -1,62 +1,86 @@
 
 # Monorepo demo todo
 
+propaganda
+<https://vercel.com/blog/how-supabase-elevated-their-developer-experience-with-turborepo>
+
 ## target tree structure
 
 - apps
-  - davidia-client-example
-  - pato-frontend-example - with custom dockerfile
-  - dedi app
-  - xas standards client
+  - TEMPLATE-vite-app
+    - davidia-client-example
+  - TEMPLATE-nextjs-14 app
+    - dedi app
+    - xas standards app
+  
+odd and possibly rehect this
 
-- packages
-  - davidia with storybook inside <https://medium.com/@Seb_L/compose-your-turborepos-storybooks-and-deploy-them-to-vercel-94befbb78a56>
-  - <https://turbo.build/repo/docs/handbook/tools/storybook>
-  - diamondlightsource ui components
-  - pato components
-  - ray class (from dedi), Plotter class, svg eclipse
-  - scientific unit logic (extracted from dedi)
-  - layouts - from frameworks comparison
-  - utils download file
-  - citation form from xas-standards client
+- pato-frontend-example - with custom dockerfile
+
+- supabase workspace
+  - <https://philipp.steinroetter.com/posts/supabase-turborepo>
+  - <https://github.com/psteinroe/supasample>
+
+- packages 
+  - (old)
+    - davidia with storybook inside 
+    - diamondlightsource ui components
+    - pato components
+  - (new)
+    - science
+      - ray class (from dedi)
+      - scientific unit logic (extracted from dedi)
+    - graphs
+      - plotting Plotter class
+      - svg eclipse
+    - layouts
+      - from frameworks comparison
+    - utils 
+      - download file
+    - citation form from xas-standards client
+    - top level storybook for all the components
+      - <https://medium.com/@Seb_L/compose-your-turborepos-storybooks-and-deploy-them-to-vercel-94befbb78a56>
+      - <https://turbo.build/repo/docs/handbook/tools/storybook>
 
 ## acceptance tests
 
-- deploy UI libraries to NPM with turbo
-- deploy into kubernetes easily
-- have a working dev mode
-- applicable to the list of libraries from /migrate directory
-  - pato
-  - davidia
-  - dedi
-  - xas-standards app
-- and those from frameworks-comparison
-  - periodic table
-  - b18-csv-generator-
-  - package comparator
-  - bootstrap popout windows
+- [ ] deploy UI libraries to NPM with turbo
+- [ ] deploy into kubernetes easily
+- [ ] have a working dev mode
+- [ ] tree structure from above
 
-- test to showcase making a new thing there
-- always import as much config as possible
-- have an arkit for the whole thing? with arkit config too?
+- [ ] from a template - for non-web-specialists users
+  - [ ] test to showcase making a new thing there - from a template
+  - [ ] always import as much config as possible
+  - [ ] have an arkit for the whole thing and in each template with arkit config too?
 
 ## order of works
 
 ### for dedi - the first thing
+ 
+- [x] dedi is the simplest case, start with that
+- [x] add a template for vite and chakra with arkit
+- [x] copy readme
 
-- add all the necessary configs into the packages
-- add a template for vite and chakra
-- dedi is the simplest case, start with that
-- double check files
-  - move the favicon
-  - double check .eslintj/cjs
+- [x] double check files
+  - [x] move the favicon
+  - [x] double check .eslintj/cjs - not that needed
 
-- copy readmes
-- configure auto github pages deployment too
+- [ ] add all the necessary configs into the packages
+  - [ ] eslint
+  - [ ] tsconfig
 
-- once that is fully done with splitting of some code logic into the packages
+- [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
+  - [ ] science 
+    - [ ] unit logic
+    - [ ] ray class
+  - [ ] graph
+    - [ ] Plotter class
+    - [ ] SVG eclipse
 
-- move one thing fully
+- [ ] configure auto github pages deployment too https://turbo.build/repo/docs/ci/github-actions
+
+- [ ] will have got one thing moved fully
 
 ### other packages and apps
 
