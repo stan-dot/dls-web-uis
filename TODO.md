@@ -67,8 +67,9 @@ odd and possibly rehect this
   - [x] double check .eslintj/cjs - not that needed
 
 - [ ] add all the necessary configs into the packages
+  - [x] tsconfig
   - [ ] eslint
-  - [ ] tsconfig
+  - [ ] vite config
 
 - [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
   - [ ] science 
@@ -98,3 +99,4 @@ to validate types arktype - better than JOI
 <https://arktype.io/>
 
 ## not doing
+- [ ] chakra config (?) in the template - not decided yet
