@@ -68,7 +68,7 @@ odd and possibly reject this
 
 - [ ] add all the necessary configs into the packages
   - [x] tsconfig
-  - [ ] eslint
+  - [x] eslint
   - [ ] vite config
 
 - [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages

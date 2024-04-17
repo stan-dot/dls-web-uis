@@ -11,15 +11,32 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
   ],
+  env: {
+    node: true,
+    browser: true,
+    es2020: true,
+  },
   globals: {
     React: true,
     JSX: true,
   },
-  env: {
-    node: true,
-    browser: true,
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    // Ignore dotfiles
+    ".*.js",
+    "node_modules/",
+  ],
+  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
+  parser: '@typescript-eslint/parser',
+  plugins: ["only-warn",'react-refresh'],
+  root: true,
+  rules: {
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
   },
-  plugins: ["only-warn"],
   settings: {
     "import/resolver": {
       typescript: {
@@ -27,10 +44,4 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [
-    // Ignore dotfiles
-    ".*.js",
-    "node_modules/",
-  ],
-  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
 };
