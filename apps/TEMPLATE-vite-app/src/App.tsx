@@ -1,4 +1,4 @@
-import diamondLogo from '/diamond.svg'
+import diamondLogo from '/assets/images/diamond.svg'
 import './App.css'
 import { CountButton } from './components/CountButton'
 

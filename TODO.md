@@ -9,11 +9,11 @@ propaganda
 - apps
   - TEMPLATE-vite-app
     - davidia-client-example
-  - TEMPLATE-nextjs-14 app
     - dedi app
+  - TEMPLATE-nextjs-14 app
     - xas standards app
   
-odd and possibly rehect this
+odd and possibly reject this
 
 - pato-frontend-example - with custom dockerfile
 
