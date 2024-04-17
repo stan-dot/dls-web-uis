@@ -66,10 +66,10 @@ odd and possibly reject this
   - [x] move the favicon
   - [x] double check .eslintj/cjs - not that needed
 
-- [ ] add all the necessary configs into the packages
+- [x] add all the necessary configs into the packages
   - [x] tsconfig
   - [x] eslint
-  - [ ] vite config
+  - [x] vite config
 
 - [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
   - [ ] science 
