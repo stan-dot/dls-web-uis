@@ -3,6 +3,8 @@ import SIUnit from "./SIUnit";
 export const CSPEED = new SIUnit(299792458, "m/s");
 export const PLANCK = new SIUnit(6.62607015e-34, "J s");
 
+// todo add that only enum or custom units can be there - those with enums have auto conversions
+
 export enum DistanceUnits {
   millimetre = "mm",
   micrometre = "um",
@@ -36,4 +38,9 @@ export enum TimeUnits {
 export function energyToWavelength(energy: SIUnit): SIUnit {
   const v = (PLANCK.value * CSPEED.value) / energy.value;
   return new SIUnit(v, WavelengthUnits.nanometers);
+}
+
+export function wavelengthToEnergy(wavelength: SIUnit): SIUnit {
+  const v = (PLANCK.value * CSPEED.value) / wavelength.value;
+  return new SIUnit(v, EnergyUnits.electronVolts);
 }

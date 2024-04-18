@@ -1,8 +1,9 @@
 import SIUnit from "./SIUnit";
 
 export default class SIRange {
-  min: SIUnit;
-  max: SIUnit;
+  public min: SIUnit;
+  public max: SIUnit;
+  public static ZERO_TO_INFINITY = new SIRange(SIUnit.ZERO, SIUnit.POSITIVE_INFINITY);
 
   constructor(a: SIUnit, b: SIUnit) {
     if (a.name !== b.name) {
@@ -44,5 +45,10 @@ export default class SIRange {
 
   public toString(): string {
     return `(min:${this.min.toString()}, max:${this.max.toString()})`;
+  }
+
+  public restrictToPositive(): SIRange {
+    const min = this.min.value < 0 ? SIUnit.ZERO : this.min;
+    return new SIRange(min, this.max);
   }
 }

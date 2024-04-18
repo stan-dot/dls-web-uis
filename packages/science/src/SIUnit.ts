@@ -7,6 +7,9 @@ export default class SIUnit {
   public name: string;
   public value: number;
 
+  public static ZERO = new SIUnit(0, "");
+  public static POSITIVE_INFINITY = new SIUnit(Number.POSITIVE_INFINITY, "");
+
   constructor(value: number, name: string) {
     this.value = value;
     this.name = name;
