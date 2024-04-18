@@ -1,6 +1,5 @@
-import { Detector } from "../utils/types";
-import { detectorList } from "../presets/presetManager";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { DetectorParams } from "../types";
 
 interface DetectorTableRow {
   name: string;
@@ -10,7 +9,7 @@ interface DetectorTableRow {
   pixel_width: number;
 }
 
-function createData(name: string, detector: Detector): DetectorTableRow {
+function createData(name: string, detector: DetectorParams): DetectorTableRow {
   return {
     name: name,
     resolution_height: detector.resolution.height,
@@ -22,6 +21,7 @@ function createData(name: string, detector: Detector): DetectorTableRow {
 
 export default function DetectorTable() {
   const displayArray: DetectorTableRow[] = [];
+  // todo think about persistence, maybe in cookies. why not just a global context?
   for (const [key, value] of Object.entries(detectorList)) {
     displayArray.push(createData(key, value));
   }

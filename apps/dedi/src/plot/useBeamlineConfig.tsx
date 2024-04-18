@@ -11,16 +11,11 @@ import {
   convertBetweenQAndD,
   convertBetweenQAndS
 } from "../results/scatteringQuantities";
-import {
-  BeamlineConfig,
-  Beamstop,
-  CircularDevice,
-  Detector
-} from "../utils/types";
 import { Plotter } from "./Plotter";
 import { UnitVector } from "./plotUtils";
+import { BeamlineParams, Beamstop, CameraTube, DetectorParams } from "../types";
 
-export function getScaleFactor(beamlineConfig: BeamlineConfig) {
+export function getScaleFactor(beamlineConfig: BeamlineParams): number | null {
   let scaleFactor: mathjs.MathType | null = null;
   if (beamlineConfig.cameraLength && beamlineConfig.wavelength) {
     scaleFactor = mathjs.divide(
@@ -32,7 +27,7 @@ export function getScaleFactor(beamlineConfig: BeamlineConfig) {
     );
   }
   if (scaleFactor == null) {
-    return scaleFactor;
+    return null;
   }
 
   if (typeof scaleFactor == "number" || !("units" in scaleFactor)) {
@@ -41,8 +36,9 @@ export function getScaleFactor(beamlineConfig: BeamlineConfig) {
 
   return scaleFactor;
 }
+
 export function useBeamlineConfig() {
-  return useBeamlineConfigStore<BeamlineConfig>((state) => {
+  return useBeamlineConfigStore<BeamlineParams>((state) => {
     return {
       angle: state.angle,
       cameraLength: state.cameraLength,
@@ -55,11 +51,12 @@ export function useBeamlineConfig() {
     };
   });
 }
+
 export function getReferencePoints(
   ptMin: Vector2,
   ptMax: Vector2,
   beamstop: Beamstop,
-  cameraTube: CircularDevice
+  cameraTube: CameraTube
 ) {
   const minPoint: UnitVector = {
     x: mathjs.unit(ptMin.x, "m"),
@@ -87,8 +84,8 @@ export function createPlots(
   beamstopCentre: UnitVector,
   beamstop: Beamstop,
   cameraTubeCentre: UnitVector,
-  cameraTube: CircularDevice,
-  detector: Detector,
+  cameraTube: CameraTube,
+  detector: DetectorParams,
   minPoint: UnitVector,
   maxPoint: UnitVector
 ) {
@@ -131,7 +128,7 @@ export function createPlots(
 }
 export function getRequestedRange(
   requestedRange: UnitRange,
-  beamlineConfig: BeamlineConfig,
+  beamlineConfig: BeamlineParams,
   beamstopCentre: UnitVector,
   plotRequestedRange: { start: Vector3; end: Vector3; },
   plotter: Plotter

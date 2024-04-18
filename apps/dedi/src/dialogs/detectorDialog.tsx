@@ -12,9 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useDetectorStore } from "../data-entry/detectorStore";
-import * as mathjs from "mathjs";
 import DetectorTable from "./detectorTable";
+import { useDetectorStore } from "../stores/detectorStore";
+import { SIUnit } from '@repo/science/SIUnit'
 
 export default function DetectorDialog(props: {
   open: boolean;
@@ -39,8 +39,8 @@ export default function DetectorDialog(props: {
       detectorStore.addNewDetector(name, {
         resolution: { height: resolutionHeight, width: resolutionWidth },
         pixelSize: {
-          height: mathjs.unit(pixelHeight, "mm"),
-          width: mathjs.unit(pixelWidth, "mm"),
+          height: new SIUnit(pixelHeight, "mm"),
+          width: new SIUnit(pixelWidth, "mm"),
         },
       });
     }

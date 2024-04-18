@@ -6,20 +6,12 @@ propaganda
 ## target tree structure
 
 - apps
+
   - TEMPLATE-vite-app
     - davidia-client-example
     - dedi app
   - TEMPLATE-nextjs-14 app
-    - xas standards app
-
-odd and possibly reject this
-
-- pato-frontend-example - with custom dockerfile
-
-- supabase workspace
-
-  - <https://philipp.steinroetter.com/posts/supabase-turborepo>
-  - <https://github.com/psteinroe/supasample>
+    - xas standards app - NOPE - for now (?)
 
 - packages
   - (old)
@@ -37,8 +29,8 @@ odd and possibly reject this
       - from frameworks comparison
     - utils
       - download file
-    - citation form from xas-standards client
-    - top level storybook for all the components
+    - citation form from xas-standards client - that is in UI
+    - top level storybook for all the components - not doing now
       - <https://medium.com/@Seb_L/compose-your-turborepos-storybooks-and-deploy-them-to-vercel-94befbb78a56>
       - <https://turbo.build/repo/docs/handbook/tools/storybook>
 
@@ -89,7 +81,10 @@ odd and possibly reject this
   - [ ] data entry - moved over stuffs
   - [ ] stores - moved, need arreglamiento
 
+IDEA - maybe the issue is with vite config not getting imported right?
+
 - [ ] just plain components (?)
+
   - [ ] dialogs
   - [ ] plot
   - [ ] results
@@ -115,4 +110,13 @@ to validate types arktype - better than JOI
 
 ## not doing
 
-- [ ] chakra config (?) in the template - not decided yet
+- [ ] chakra config (?) in the template - yeah, best not to lock in right now
+
+odd and possibly reject this
+
+- pato-frontend-example - with custom dockerfile
+
+- supabase workspace
+
+  - <https://philipp.steinroetter.com/posts/supabase-turborepo>
+  - <https://github.com/psteinroe/supasample>

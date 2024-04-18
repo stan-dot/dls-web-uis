@@ -1,4 +1,3 @@
-import { AppDataFormat, presetList } from "../presets/presetManager";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 
 interface BeamlineTableRow {

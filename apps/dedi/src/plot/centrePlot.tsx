@@ -14,17 +14,17 @@ import ResultsBar from "../results/resultsBar";
 import {
   useResultStore,
 } from "../results/resultsStore";
-import {
-  Beamstop,
-  CircularDevice,
-  Detector,
-} from "../utils/types";
+
 import { Plotter } from "./Plotter";
 import LegendBar from "./legendBar";
 import { usePlotStore } from "./plotStore";
 import { color2String, getDomains } from "./plotUtils";
 import SvgAxisAlignedEllipse from "./svgEllipse";
 import { useBeamlineConfig, getScaleFactor, getReferencePoints, createPlots, getRange, getRequestedRange } from "./useBeamlineConfig";
+import { useDetectorStore } from "../stores/detectorStore";
+import { Beamstop } from "../types";
+import { useBeamstopStore } from "../stores/beamstopStore";
+import { useCameraTubeStore } from "../stores/cameraTubeStore";
 
 export default function CentrePlot(): JSX.Element {
   const plotConfig = usePlotStore();
