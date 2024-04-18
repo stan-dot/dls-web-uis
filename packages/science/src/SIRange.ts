@@ -3,7 +3,10 @@ import SIUnit from "./SIUnit";
 export default class SIRange {
   public min: SIUnit;
   public max: SIUnit;
-  public static ZERO_TO_INFINITY = new SIRange(SIUnit.ZERO, SIUnit.POSITIVE_INFINITY);
+  public static ZERO_TO_INFINITY = new SIRange(
+    SIUnit.ZERO,
+    SIUnit.POSITIVE_INFINITY
+  );
 
   constructor(a: SIUnit, b: SIUnit) {
     if (a.name !== b.name) {
@@ -24,6 +27,7 @@ export default class SIRange {
       this.min.value <= other.min.value && this.max.value >= other.max.value
     );
   }
+
   public intersection(other: SIRange): SIRange {
     if (this.containsRange(other)) {
       return other;

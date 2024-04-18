@@ -73,8 +73,8 @@ odd and possibly reject this
 
 - [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
   - [ ] science 
-    - [ ] unit logic
-    - [ ] ray class
+    - [x] unit logic
+    - [x] ray class
   - [ ] graph
     - [ ] Plotter class
     - [ ] SVG eclipse
