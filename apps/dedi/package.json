@@ -21,6 +21,8 @@
     "@mui/material": "^5.15.15",
     "@react-three/fiber": "^8.16.2",
     "@repo/ui": "*",
+    "@repo/science": "*",
+
     "@repo/vite-config": "*",
     "@testing-library/react": "^15.0.2",
     "arkit": "^1.6.4",

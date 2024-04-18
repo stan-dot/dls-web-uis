@@ -1,4 +1,3 @@
-
 # Monorepo demo todo
 
 propaganda
@@ -12,18 +11,19 @@ propaganda
     - dedi app
   - TEMPLATE-nextjs-14 app
     - xas standards app
-  
+
 odd and possibly reject this
 
 - pato-frontend-example - with custom dockerfile
 
 - supabase workspace
+
   - <https://philipp.steinroetter.com/posts/supabase-turborepo>
   - <https://github.com/psteinroe/supasample>
 
-- packages 
+- packages
   - (old)
-    - davidia with storybook inside 
+    - davidia with storybook inside
     - diamondlightsource ui components
     - pato components
   - (new)
@@ -35,7 +35,7 @@ odd and possibly reject this
       - svg eclipse
     - layouts
       - from frameworks comparison
-    - utils 
+    - utils
       - download file
     - citation form from xas-standards client
     - top level storybook for all the components
@@ -57,27 +57,41 @@ odd and possibly reject this
 ## order of works
 
 ### for dedi - the first thing
- 
+
 - [x] dedi is the simplest case, start with that
 - [x] add a template for vite and chakra with arkit
 - [x] copy readme
 
 - [x] double check files
+
   - [x] move the favicon
   - [x] double check .eslintj/cjs - not that needed
 
 - [x] add all the necessary configs into the packages
+
   - [x] tsconfig
   - [x] eslint
   - [x] vite config
 
-- [ ] once that is fully done with splitting of some code logic into the packages  https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
-  - [ ] science 
+- [ ] once that is fully done with splitting of some code logic into the packages https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
+
+  - [ ] science
     - [x] unit logic
     - [x] ray class
   - [ ] graph
     - [ ] Plotter class
     - [ ] SVG eclipse
+
+- [ ] regular components and files
+
+  - [x] presets
+  - [x] utils
+  - [ ] calculations - partially done, need qrange and qspace
+  - [ ] data entry
+  - [ ] dialogs
+  - [ ] plot
+  - [ ] results
+  - [ ] stores
 
 - [ ] configure auto github pages deployment too https://turbo.build/repo/docs/ci/github-actions
 
@@ -99,4 +113,5 @@ to validate types arktype - better than JOI
 <https://arktype.io/>
 
 ## not doing
+
 - [ ] chakra config (?) in the template - not decided yet

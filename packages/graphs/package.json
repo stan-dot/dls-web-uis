@@ -1,10 +1,8 @@
 {
-  "name": "@repo/science",
+  "name": "@repo/graphs",
   "version": "0.0.1",
   "exports": {
-    "ray": "./src/ray.ts",
-    "SIUnit": "./src/SIUnit.ts",
-    "SIRange": "./src/SIRange.ts"
+    "graphs": "./src/ray.ts"
   },
   "dependencies": {
     "three": "^0.158.0",
