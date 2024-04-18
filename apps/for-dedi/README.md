@@ -1,5 +1,14 @@
 # Dedi-web
 
+
+support for mathjs typescript is not great and a module issue. or maybe an issue with turpo?
+https://github.com/josdejong/mathjs/issues/2506
+
+
+not clear, not clear
+https://github.com/josdejong/mathjs/issues/2076
+
+
 [![dedi-web code CI](https://github.com/tizayi/dedi-web/actions/workflows/code.yml/badge.svg)](https://github.com/tizayi/dedi-web/actions/workflows/code.yml)
 [![gh-pages](https://github.com/tizayi/dedi-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/tizayi/dedi-web/actions/workflows/deploy.yml)
 

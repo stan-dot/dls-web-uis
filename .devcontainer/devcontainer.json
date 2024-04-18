@@ -1,5 +1,5 @@
 {
-  "name": "Existing Dockerfile",
+  "name": "DLS web utis",
   "build": {
     // Sets the run context to one level up instead of the .devcontainer folder.
     "context": "..",
@@ -31,7 +31,8 @@
         "eamodio.gitlens",
         "espenp.prettier-vscode",
         "rvest.vs-code-prettier-eslint",
-        "christian-kohler.path-intellisense"
+        "christian-kohler.path-intellisense",
+        "esbenp.prettier-vscode",
       ]
     }
   },

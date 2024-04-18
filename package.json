@@ -6,7 +6,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo test"
+    "test": "turbo test",
+    "new:copy":"turbo gen workspace --copy"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
