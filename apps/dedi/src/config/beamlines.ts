@@ -56,4 +56,7 @@ const i22Anisotropic: BeamlineParams = {
   cameraLengthStep: 0.25,
 };
 
-export const configs = [i22Isotropic, i22Anisotropic];
+export const beamlineConfigDict: Record<string, BeamlineParams> = {
+  i22Isotropic: i22Isotropic,
+  i22Anisotropic: i22Anisotropic,
+};

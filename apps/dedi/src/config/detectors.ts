@@ -24,4 +24,8 @@ const longBoy: DetectorParams = {
   },
 };
 
-export const detectors = [pilatus, longBoy];
+export const detectorConfigDict: Record<string, DetectorParams> = {
+  pilatus: pilatus,
+  longBoy: longBoy,
+};
+

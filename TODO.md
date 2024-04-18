@@ -83,15 +83,16 @@ odd and possibly reject this
     - [ ] SVG eclipse
 
 - [ ] regular components and files
-
   - [x] presets
   - [x] utils
   - [ ] calculations - partially done, need qrange and qspace
-  - [ ] data entry
+  - [ ] data entry - moved over stuffs
+  - [ ] stores - moved, need arreglamiento
+
+- [ ] just plain components (?)
   - [ ] dialogs
   - [ ] plot
   - [ ] results
-  - [ ] stores
 
 - [ ] configure auto github pages deployment too https://turbo.build/repo/docs/ci/github-actions
 

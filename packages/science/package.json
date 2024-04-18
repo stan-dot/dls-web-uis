@@ -2,9 +2,11 @@
   "name": "@repo/science",
   "version": "0.0.1",
   "exports": {
-    "ray": "./src/ray.ts",
-    "SIUnit": "./src/SIUnit.ts",
-    "SIRange": "./src/SIRange.ts"
+    ".": "./src/SIUnit.ts",
+    "./ray": "./src/ray.ts",
+    "./SIUnit": "./src/SIUnit.ts",
+    "./SIRange": "./src/SIRange.ts",
+    "./units": "./src/units.ts"
   },
   "dependencies": {
     "three": "^0.158.0",

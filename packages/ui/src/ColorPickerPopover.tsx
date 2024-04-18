@@ -9,7 +9,7 @@ export const color2String = (color: RGBColor) => {
 };
 
 
-export default function ColourPickerPopover(props: {
+export default function ColorPickerPopover(props: {
   color: RGBColor;
   onChangeComplete: (color: ColorResult) => void;
 }) {

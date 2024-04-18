@@ -1,5 +1,10 @@
 import { SIUnit } from "@repo/science/SIUnit";
 
+export interface SimpleVector2 {
+  x?: number | null;
+  y?: number | null;
+}
+
 export type BeamlineParams = {
   name: string;
   detectorName: string;
@@ -16,18 +21,13 @@ export type BeamlineParams = {
 };
 
 export type Beamstop = {
-  centre: Centre;
+  centre:SimpleVector2;
   diameter: number;
   clearance: number;
 };
 
-export type Centre = {
-  x: number;
-  y: number;
-};
-
 export type CameraTube = {
-  centre: Centre;
+  centre: SimpleVector2;
   diameter: number;
 };
 
