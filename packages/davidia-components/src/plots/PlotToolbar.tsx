@@ -14,9 +14,6 @@ import {
 import type { TypedArray } from 'ndarray';
 import type { ReactNode } from 'react';
 import { Fragment, useEffect, useState } from 'react';
-import { BsCardHeading } from 'react-icons/bs';
-import { MdAspectRatio, MdOutlineShapeLine } from 'react-icons/md';
-import { TbAxisX, TbAxisY } from 'react-icons/tb';
 
 import AspectConfigModal from '../modals/AspectConfigModal.js';
 import AxisConfigModal from '../modals/AxisConfigModal.js';
@@ -24,9 +21,7 @@ import type BaseSelection from '../selection-components/BaseSelection.js';
 import { BatonConfigModal } from '../modals/BatonConfigModal.js';
 import ClearSelectionsBtn from '../small-components/ClearSelectionsBtn.js';
 import InteractionModeToggle from '../small-components/InteractionModeToggle.js';
-import LabelledInput from '../small-components/LabelledInput.js';
 import type { IIconType } from '../modals/Modal.js';
-import Modal from '../modals/Modal.js';
 import SelectionTypeDropdown from '../selection-components/SelectionTypeDropdown.js';
 import type {
   SelectionBase,
@@ -36,46 +31,8 @@ import SelectionConfig from '../selection-components/SelectionConfig.js';
 import SelectionIDDropdown from '../selection-components/SelectionIDDropdown.js';
 import type { BatonProps } from './AnyPlot.js';
 import { InteractionModeType } from '../utils.js';
+import { TitleConfigModal } from './TitleConfigModal.js';
 
-/**
- * The props for the `TitleConfigModal` component.
- * @interface {object} TitleConfigModalProps
- * @member {string} title - The modal title.
- * @member {IIconType} [icon] - The modal icon.
- * @member {string} [label] - The label.
- * @member {(value: string) => void} [setLabel] - Handles setting of label.
- */
-interface TitleConfigModalProps {
-  /** The modal title */
-  title: string;
-  /** The modal icon (optional) */
-  icon?: IIconType;
-  /** The label (optional) */
-  label?: string;
-  /** Handles setting of label */
-  setLabel: (value: string) => void;
-}
-
-/**
- *
- * Renders configuration options for plot title.
- * @param {TitleConfigModalProps} props - The component props.
- * @returns {JSX.Element} The rendered component.
- */
-function TitleConfigModal(props: TitleConfigModalProps) {
-  return Modal({
-    title: props.title,
-    icon: props.icon,
-    children: (
-      <LabelledInput<string>
-        key="title"
-        label="title"
-        input={props.label ?? ''}
-        updateValue={props.setLabel}
-      />
-    ),
-  });
-}
 /**
  * The props for the `PlotToolbar` component.
  * @param {boolean} showGrid - If the grid should be shown.
@@ -208,8 +165,8 @@ interface PlotToolbarProps {
  */
 function PlotToolbar(props: PlotToolbarProps) {
   const firstSelection =
-    props.selections && props.selections.length > 0
-      ? props.selections[props.selections.length - 1].id
+    props.selections && props.selections.length > 0 && props.selections.at(-1)
+      ? props.selections.at(-1)!.id
       : null;
   const [currentSelectionID, setCurrentSelectionID] = useState<string | null>(
     firstSelection

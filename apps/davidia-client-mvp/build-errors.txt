@@ -1,35 +1,3 @@
-
-> @diamondlightsource/davidia-example@0.1.0 build
-> tsc && vite build
-
-../../packages/davidia-components/src/plots/LinePlot.tsx(86,7): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
-  Type 'undefined' is not assignable to type 'string'.
-../../packages/davidia-components/src/plots/PlotToolbar.tsx(212,9): error TS2532: Object is possibly 'undefined'.
-../../packages/davidia-components/src/plots/PlotToolbar.tsx(257,29): error TS2532: Object is possibly 'undefined'.
-../../packages/davidia-components/src/selection-components/MulticlickSelectionTool.tsx(226,64): error TS2345: Argument of type 'Vector3 | undefined' is not assignable to parameter of type 'Vector3'.
-  Type 'undefined' is not assignable to type 'Vector3'.
-../../packages/davidia-components/src/selection-components/SelectionConfig.tsx(94,5): error TS2322: Type 'BaseSelection | undefined' is not assignable to type 'BaseSelection | null'.
-  Type 'undefined' is not assignable to type 'BaseSelection | null'.
-../../packages/davidia-components/src/selection-components/SelectionConfig.tsx(107,21): error TS2550: Property 'hasOwn' does not exist on type 'ObjectConstructor'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2022' or later.
-../../packages/davidia-components/src/selection-components/SelectionConfig.tsx(117,38): error TS2550: Property 'findLast' does not exist on type 'BaseSelection[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.
-../../packages/davidia-components/src/selection-components/SelectionConfig.tsx(118,14): error TS7006: Parameter 's' implicitly has an 'any' type.
-../../packages/davidia-components/src/selection-components/SelectionIDDropdown.tsx(66,25): error TS2532: Object is possibly 'undefined'.
-../../packages/davidia-components/src/shapes/DvdAxisBox.tsx(79,19): error TS2532: Object is possibly 'undefined'.
-../../packages/davidia-components/src/shapes/DvdAxisBox.tsx(79,49): error TS2532: Object is possibly 'undefined'.
-../../packages/davidia-components/src/shapes/DvdAxisBox.tsx(80,25): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
-  Type 'undefined' is not assignable to type 'number'.
-../../packages/davidia-components/src/shapes/DvdAxisBox.tsx(81,25): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
-  Type 'undefined' is not assignable to type 'number'.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(130,22): error TS7031: Binding element 'x' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(130,25): error TS7031: Binding element 'y' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(130,28): error TS7031: Binding element 'dx' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(130,32): error TS7031: Binding element 'dy' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(133,21): error TS7031: Binding element 'x' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(133,24): error TS7031: Binding element 'y' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(133,27): error TS7031: Binding element 'dx' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(133,31): error TS7031: Binding element 'dy' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(133,35): error TS7031: Binding element 'isDragging' implicitly has an 'any' type.
-../../packages/davidia-components/src/shapes/DvdDragHandle.tsx(139,9): error TS7006: Parameter 'dragState' implicitly has an 'any' type.
 ../../packages/davidia-components/src/shapes/DvdPolyline.tsx(79,43): error TS2345: Argument of type 'Vector3 | undefined' is not assignable to parameter of type 'Vector3'.
   Type 'undefined' is not assignable to type 'Vector3'.
 ../../packages/davidia-components/src/specific-selections/AxialSelection.tsx(48,16): error TS18048: 'b' is possibly 'undefined'.

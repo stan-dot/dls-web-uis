@@ -1,4 +1,4 @@
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 }  from 'three';
 import OrientableSelection from './OrientableSelection.js';
 import type { SelectionBase } from './utils.js';
 

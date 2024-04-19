@@ -1,8 +1,8 @@
 import { type SVGProps, useMemo } from 'react';
-import { Matrix3, Vector3 } from '../../node_modules/@types/three/index.js';
 import type { HandleChangeFunction } from '../specific-selections/utils.js';
 import type { Size } from '@h5web/lib';
 import { DvdDragHandle, HANDLE_SIZE } from './DvdDragHandle.js';
+import { Matrix3, Vector3 } from 'three';
 
 interface DvdPolylineProps extends SVGProps<SVGPolylineElement> {
   size: Size; // canvas width, height
@@ -20,6 +20,7 @@ const ROTATE_90_SCALE = new Matrix3()
   .multiplyScalar(Math.sin(Math.PI / 3));
 
 function createArrow(a: Vector3, b: Vector3) {
+  // todo what do the arguments mean here?
   const d = new Vector3().subVectors(b, a);
   const l = Math.hypot(d.x, d.y);
   const hd = d.clone().multiplyScalar(0.5 + ARROW_OFFSET / l); // halfway along edge plus offset
@@ -76,6 +77,9 @@ function DvdPolyline(props: DvdPolylineProps) {
     [points]
   );
 
+  if (coords.length < 2) {
+    throw Error('coordinates need to be at least 2')
+  }
   const arrow = useMemo(() => createArrow(coords[0], coords[1]), [coords]);
 
   return (

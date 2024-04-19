@@ -1,8 +1,8 @@
 import { type SVGProps, useMemo } from 'react';
-import { Vector3 } from '../../node_modules/@types/three/index.js';
 import type { HandleChangeFunction } from '../specific-selections/utils.js';
 import type { Size } from '@h5web/lib';
 import { DvdDragHandle } from './DvdDragHandle.js';
+import { Vector3 } from 'three';
 
 function generateInitialPoints(
   axis: number,
@@ -76,9 +76,15 @@ function DvdAxisBox({
   onHandleChange,
   ...svgProps
 }: DvdAxisBoxProps) {
-  const values = [coords[0].getComponent(axis), coords[1].getComponent(axis)];
-  const cMin = Math.min(values[0], values[1]);
-  const cMax = Math.max(values[0], values[1]);
+  if (coords.length !== 2) {
+    throw Error('must provide exactly two coordinates for the box')
+  }
+  const values: number[] = [coords[0]!.getComponent(axis), coords[1]!.getComponent(axis)];
+  if (values.length !== 2) {
+    throw Error('must provide exactly two values for the box')
+  }
+  const cMin = Math.min(values[0]!, values[1]!);
+  const cMax = Math.max(values[0]!, values[1]!);
 
   const points: Vector3[] = generateInitialPoints(axis, cMin, size, cMax);
 

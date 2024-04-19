@@ -1,6 +1,6 @@
 import { type ModifierKey, useVisCanvasContext } from '@h5web/lib';
 import { useMemo } from 'react';
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 }  from 'three';
 import { useThree } from '@react-three/fiber';
 
 import MulticlickSelectionTool from './MulticlickSelectionTool.js';

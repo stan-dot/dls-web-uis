@@ -63,7 +63,10 @@ function SelectionIDDropdown(props: SelectionIDDropdownProps) {
       'Setting selectionID to default selection: ',
       props.selections[0]
     );
-    onSelectionIDChange(props.selections[0].id);
+    const firstSelection: SelectionBase | undefined = props.selections[0];
+    if (firstSelection) {
+      onSelectionIDChange(firstSelection.id);
+    }
   }
 
   const defaultColour = '#ffffff';

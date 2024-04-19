@@ -19,7 +19,7 @@ import {
 import { useThree } from '@react-three/fiber';
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import type { Camera, Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 } from 'three';
 
 type Points = Vector3[];
 

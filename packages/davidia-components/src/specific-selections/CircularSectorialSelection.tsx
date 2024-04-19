@@ -1,4 +1,4 @@
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 } from 'three';
 import { polar } from './utils.js';
 import BaseSelection from '../selection-components/BaseSelection.js';
 import type { SelectionBase } from './utils.js';
@@ -30,15 +30,18 @@ export default class CircularSectorialSelection extends BaseSelection {
   }
 
   static createFromPoints(points: Vector3[]) {
-    const c = points[0];
-    const i = new Vector3().subVectors(points[1], c);
+    if (points.length < 2) {
+      throw Error('need to provide two points to create axial selection')
+    }
+    const c = points[0]!;
+    const i = new Vector3().subVectors(points[1]!, c);
     const pi = polar(i);
     const ri = pi[0];
     const ai = pi[1];
     let ro = ri;
     let ao = ai;
     if (points.length > 2) {
-      const o = new Vector3().subVectors(points[2], c);
+      const o = new Vector3().subVectors(points[2]!, c);
       const po = polar(o);
       ro = po[0];
       ao = po[1];

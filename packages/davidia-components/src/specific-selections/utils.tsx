@@ -14,7 +14,7 @@ import {
 } from '@h5web/lib';
 import { useThree } from '@react-three/fiber';
 import { useCallback } from 'react';
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 }  from 'three';
 import DvdAxisBox from '../shapes/DvdAxisBox.js';
 import DvdPolyline from '../shapes/DvdPolyline.js';
 import AxialSelection from './AxialSelection.js';

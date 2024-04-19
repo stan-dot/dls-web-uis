@@ -1,4 +1,4 @@
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 } from 'three';
 import BaseSelection from '../selection-components/BaseSelection.js';
 import type { SelectionBase } from './utils.js';
 
@@ -42,8 +42,11 @@ export default class AxialSelection extends BaseSelection {
   }
 
   _setFromPoints(points: Vector3[]) {
-    const b = points[0];
-    const e = points[1];
+    if (points.length < 2) {
+      throw Error('need to provide two points to create axial selection')
+    }
+    const b: Vector3 = points[0]!;
+    const e: Vector3 = points[1]!;
     const d = this.dimension;
     const bv = b.getComponent(d);
     const ev = e.getComponent(d);
@@ -55,12 +58,15 @@ export default class AxialSelection extends BaseSelection {
       this.start[d] = ev;
       this.length = bv - ev;
     }
-    this.vStart.setComponent(d, this.start[d]);
+    this.vStart.setComponent(d, this.start[d]!);
   }
 
   static createFromPoints(points: Vector3[], dimension: number) {
-    const b = points[0].getComponent(dimension);
-    const e = points[1].getComponent(dimension);
+    if (points.length < 2) {
+      throw Error('need to provide two points to create axial selection')
+    }
+    const b = points[0]!.getComponent(dimension);
+    const e = points[1]!.getComponent(dimension);
 
     const l = e - b;
     const s: [number, number] = [0, 0];
@@ -86,7 +92,7 @@ export default class AxialSelection extends BaseSelection {
       const b = pos[d] ?? 0;
       const o = this._getPoint(0.5);
       const db = b - o.getComponent(d);
-      const nb = r.start[d] + db;
+      const nb = r.start[d]! + db;
       r.start[d] = nb;
       r.vStart.setComponent(d, nb);
       return r;
@@ -94,14 +100,14 @@ export default class AxialSelection extends BaseSelection {
 
     const c = pos[d] ?? 0;
     if (i < 2) {
-      const ce = r.start[d] + r.length - c;
+      const ce = r.start[d]! + r.length - c;
       if (ce >= 0) {
         r.start[d] = c;
         r.vStart.setComponent(d, c);
         r.length = ce;
       }
     } else {
-      const cs = c - r.start[d];
+      const cs = c - r.start[d]!;
       if (cs >= 0) {
         r.length = cs;
       }

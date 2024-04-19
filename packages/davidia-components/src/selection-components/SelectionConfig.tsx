@@ -99,30 +99,16 @@ function SelectionConfig(props: SelectionConfigProps) {
    *
    * Handles deletion of a selection.
    */
-  function handleDeleteSelection() {
-    if (currentSelectionID) {
-      const selection = selections.find((s) => s.id === currentSelectionID);
-      if (selection) {
-        let lastSelection: BaseSelection | undefined;
-        if (!Object.hasOwn(selections, 'findLast')) {
-          // workaround missing method
-          const oSelections = selections.filter(
-            (s) => s.id !== currentSelectionID
-          );
-          const last = oSelections.length - 1;
-          if (last >= 0) {
-            lastSelection = oSelections[last];
-          }
-        } else {
-          lastSelection = selections.findLast(
-            (s) => s.id !== currentSelectionID
-          );
-        }
-        updateSelection(selection, true, true);
-        if (lastSelection) {
-          updateCurrentSelectionID(lastSelection.id);
-        }
-      }
+  function handleDeleteSelection(): void {
+    if (!currentSelectionID) return;
+
+    const selection: BaseSelection | undefined = selections.find((s) => s.id === currentSelectionID);
+    if (!selection) return;
+
+    const lastSelection: BaseSelection | undefined = getLastSelection(selections, currentSelectionID);
+    updateSelection(selection, true, true);
+    if (lastSelection) {
+      updateCurrentSelectionID(lastSelection.id);
     }
   }
 
@@ -247,3 +233,24 @@ function SelectionConfig(props: SelectionConfigProps) {
 
 export default SelectionConfig;
 export type { SelectionConfigProps };
+
+function getLastSelection(selections: BaseSelection[], currentSelectionID: string) {
+  let lastSelection: BaseSelection | undefined;
+
+  if (!Object.hasOwn(selections, 'findLast')) {
+    // workaround missing method
+    const oSelections = selections.filter(
+      (s) => s.id !== currentSelectionID
+    );
+    const last = oSelections.length - 1;
+    if (last >= 0) {
+      lastSelection = oSelections[last];
+    }
+  } else {
+    lastSelection = selections.findLast(
+      (s) => s.id !== currentSelectionID
+    );
+  }
+  return lastSelection;
+}
+

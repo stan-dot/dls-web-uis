@@ -4,7 +4,7 @@
  * @remark All points are [x,y], all angles in radians
  */
 
-import { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 }  from 'three';
 import type { SelectionBase } from '../specific-selections/utils.js';
 
 /** export class for all selections */
