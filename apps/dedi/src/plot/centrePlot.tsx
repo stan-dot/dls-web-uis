@@ -19,7 +19,7 @@ import { Plotter } from "./Plotter";
 import LegendBar from "./legendBar";
 import { usePlotStore } from "./plotStore";
 import { color2String, getDomains } from "./plotUtils";
-import SvgAxisAlignedEllipse from "./svgEllipse";
+import SvgAxisAlignedEllipse from "@repo/ui/svg-ellipse";
 import { useBeamlineConfig, getScaleFactor, getReferencePoints, createPlots, getRange, getRequestedRange } from "./useBeamlineConfig";
 import { useDetectorStore } from "../stores/detectorStore";
 import { Beamstop } from "../types";

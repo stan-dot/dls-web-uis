@@ -7,32 +7,25 @@ propaganda
 
 - apps
 
-  - TEMPLATE-vite-app
-    - davidia-client-example
-    - dedi app
-  - TEMPLATE-nextjs-14 app
+  - [x] TEMPLATE-vite-app
+    - [x] davidia-client-example
+    - [x] dedi app
+  - [x] TEMPLATE-nextjs-14 app
     - xas standards app - NOPE - for now (?)
 
 - packages
-  - (old)
-    - davidia with storybook inside
-    - diamondlightsource ui components
-    - pato components
   - (new)
+    - utils
+      - [x] download file
+    - [x] citation form from xas-standards client - that is in UI
     - science
-      - ray class (from dedi)
-      - scientific unit logic (extracted from dedi)
+      - [x] ray class (from dedi)
+      - [x] scientific unit logic (extracted from dedi)
     - graphs
       - plotting Plotter class
-      - svg eclipse
+      - [x] svg eclipse
     - layouts
-      - from frameworks comparison
-    - utils
-      - download file
-    - citation form from xas-standards client - that is in UI
-    - top level storybook for all the components - not doing now
-      - <https://medium.com/@Seb_L/compose-your-turborepos-storybooks-and-deploy-them-to-vercel-94befbb78a56>
-      - <https://turbo.build/repo/docs/handbook/tools/storybook>
+      - [ ] from frameworks comparison
 
 ## acceptance tests
 
@@ -65,14 +58,16 @@ propaganda
   - [x] eslint
   - [x] vite config
 
-- [ ] once that is fully done with splitting of some code logic into the packages https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
+- [x] once that is fully done with splitting of some code logic into the packages https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
+
+for pnpm need to export from index.ts
 
   - [ ] science
     - [x] unit logic
     - [x] ray class
   - [ ] graph
     - [ ] Plotter class
-    - [ ] SVG eclipse
+    - [x] SVG eclipse
 
 - [ ] regular components and files
 
@@ -101,6 +96,11 @@ propaganda
 
 ## maybe doing
 
+- packages (old)
+  - davidia with storybook inside
+  - diamondlightsource ui components
+  - pato components
+
 migrate xas standards to a supabase backend, independent of the frontend? just a next js app?
 <https://chat.openai.com/c/cb512553-a543-4b0e-9e6e-bb43feeb308a>
 
@@ -109,6 +109,11 @@ to validate types arktype - better than JOI
 
 ## not doing
 
+- top level storybook for all the components - not doing now
+
+  - <https://medium.com/@Seb_L/compose-your-turborepos-storybooks-and-deploy-them-to-vercel-94befbb78a56>
+  - <https://turbo.build/repo/docs/handbook/tools/storybook>
+
 - [ ] chakra config (?) in the template - yeah, best not to lock in right now
 
 odd and possibly reject this
@@ -116,7 +121,6 @@ odd and possibly reject this
 - pato-frontend-example - with custom dockerfile
 
 - supabase workspace
-
   - <https://philipp.steinroetter.com/posts/supabase-turborepo>
   - <https://github.com/psteinroe/supasample>
 

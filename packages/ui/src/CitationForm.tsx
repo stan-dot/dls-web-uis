@@ -1,8 +1,9 @@
-import axios from "axios";
-// todo move to fetch from axios
 
 const crossref_url = "https://api.crossref.org/works/";
 const mailto = "?mailto=dataanalysis@diamond.ac.uk";
+
+const doi_regex_string = "^10.\\d{4,9}\\/[-._;()\\/:A-Z0-9]+$"; // eslint-disable-line
+const DOI_REGEX = new RegExp(doi_regex_string);
 
 function CitationForm(props) {
   const citation = props.citation;
@@ -12,20 +13,22 @@ function CitationForm(props) {
 
   const validateDOI = () => {
     // prettier-ignore
-    const doi_regex = "^10.\\d{4,9}\\/[-._;()\\/:A-Z0-9]+$"; // eslint-disable-line
-    const matches = new RegExp(doi_regex).test(doi);
+    const matches = DOI_REGEX.test(doi);
 
     const full_url = encodeURI(crossref_url + doi + "/" + mailto);
 
     if (matches) {
-      axios
-        .get(full_url)
-        .then((res) => {
+      fetch(full_url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
           console.log("valid");
         })
         .catch((error) => {
           console.log("not valid");
         });
+
     }
   };
 
