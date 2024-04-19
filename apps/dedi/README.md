@@ -1,4 +1,11 @@
-c# React + TypeScript + Vite
+# Dedi-web
+
+support for mathjs typescript is not great and a module issue. or maybe an issue with turpo?
+https://github.com/josdejong/mathjs/issues/2506
+
+
+not clear, not clear
+https://github.com/josdejong/mathjs/issues/2076
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

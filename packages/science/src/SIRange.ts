@@ -1,6 +1,6 @@
-import SIUnit from "./SIUnit";
+import { SIUnit } from "./SIUnit";
 
-export default class SIRange {
+export class SIRange {
   public min: SIUnit;
   public max: SIUnit;
   public static ZERO_TO_INFINITY = new SIRange(
@@ -18,8 +18,8 @@ export default class SIRange {
     this.max = large;
   }
 
-  public containsValue(value: SIUnit): boolean {
-    return value.value >= this.min.value && value.value <= this.max.value;
+  public containsValue(u: SIUnit): boolean {
+    return u.value >= this.min.value && u.value <= this.max.value;
   }
 
   public containsRange(other: SIRange): boolean {
@@ -50,7 +50,6 @@ export default class SIRange {
   public toString(): string {
     return `(min:${this.min.toString()}, max:${this.max.toString()})`;
   }
-
   public restrictToPositive(): SIRange {
     const min = this.min.value < 0 ? SIUnit.ZERO : this.min;
     return new SIRange(min, this.max);

@@ -1,8 +1,5 @@
-import * as mathjs from "mathjs";
 import { Vector2, Vector3 } from "three";
 import { getPointForQ } from "../calculations/qvalue";
-import UnitRange from "../calculations/unitRange";
-import { useBeamlineConfigStore } from "../data-entry/beamlineconfigStore";
 import {
   ResultStore,
   ScatteringOptions
@@ -16,7 +13,7 @@ import { UnitVector } from "./plotUtils";
 import { BeamlineParams, Beamstop, CameraTube, DetectorParams } from "../types";
 
 export function getScaleFactor(beamlineConfig: BeamlineParams): number | null {
-  let scaleFactor: mathjs.MathType | null = null;
+  let scaleFactor: number = null;
   if (beamlineConfig.cameraLength && beamlineConfig.wavelength) {
     scaleFactor = mathjs.divide(
       2 * Math.PI,

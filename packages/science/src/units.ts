@@ -1,4 +1,4 @@
-import SIUnit from "./SIUnit";
+import { SIUnit } from "./SIUnit";
 
 export const CSPEED = new SIUnit(299792458, "m/s");
 export const PLANCK = new SIUnit(6.62607015e-34, "J s");

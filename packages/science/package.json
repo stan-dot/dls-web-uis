@@ -2,7 +2,7 @@
   "name": "@repo/science",
   "version": "0.0.1",
   "exports": {
-    ".": "./src/SIUnit.ts",
+    ".": "./src/index.ts",
     "./ray": "./src/ray.ts",
     "./SIUnit": "./src/SIUnit.ts",
     "./SIRange": "./src/SIRange.ts",

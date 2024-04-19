@@ -1,5 +1,4 @@
 import { Vector2 } from "three";
-import NumericRange from "./NumericRange";
 import SIRange from "./SIRange";
 import SIUnit from "./SIUnit";
 

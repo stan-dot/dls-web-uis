@@ -5,6 +5,7 @@
     "declaration": true,
     "sourceMap": true,
     "declarationMap": true,
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "references": [

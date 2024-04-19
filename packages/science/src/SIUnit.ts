@@ -3,7 +3,7 @@ type SIResult = {
   error: Error | undefined;
 };
 
-export default class SIUnit {
+export class SIUnit {
   public name: string;
   public value: number;
 

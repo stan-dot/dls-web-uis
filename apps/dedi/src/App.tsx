@@ -1,6 +1,9 @@
-import diamondLogo from '/assets/images/diamond.svg'
-import './App.css'
-import { CountButton } from './components/CountButton'
+import { Stack } from "@mui/material";
+import './App.css';
+import { CountButton } from './components/CountButton';
+import DataSideBar from "./components/data-entry/dataSideBar";
+import CentrePlot from "./plot/centrePlot";
+import diamondLogo from '/assets/images/diamond.svg';
 
 function App() {
 
@@ -12,6 +15,10 @@ function App() {
         </a>
       </div>
       <h1>Dedi app</h1>
+        <Stack direction={"row"} spacing={1} margin={1}>
+            <DataSideBar />
+            <CentrePlot />
+        </Stack>
       <div className="card">
         <CountButton />
         <p>
@@ -26,5 +33,6 @@ function App() {
 }
 
 export default App
+
 
 
