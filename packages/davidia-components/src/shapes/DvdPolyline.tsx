@@ -80,7 +80,7 @@ function DvdPolyline(props: DvdPolylineProps) {
   if (coords.length < 2) {
     throw Error('coordinates need to be at least 2')
   }
-  const arrow = useMemo(() => createArrow(coords[0], coords[1]), [coords]);
+  const arrow = useMemo(() => createArrow(coords[0]!, coords[1]!), [coords]);
 
   return (
     <>

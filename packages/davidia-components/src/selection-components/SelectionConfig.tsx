@@ -91,8 +91,11 @@ function SelectionConfig(props: SelectionConfigProps) {
   } = props;
   let currentSelection: BaseSelection | null = null;
   if (selections.length > 0) {
-    currentSelection =
+    const c =
       selections.find((s) => s.id === currentSelectionID) ?? selections[0];
+    if (c) {
+      currentSelection = c;
+    }
   }
 
   /**

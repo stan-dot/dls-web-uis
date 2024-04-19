@@ -1,4 +1,4 @@
-import type { Vector3 } from '../../node_modules/@types/three/index.js';
+import { Vector3 } from 'three';
 import BaseSelection from '../selection-components/BaseSelection.js';
 import type { SelectionBase } from './utils.js';
 
@@ -23,6 +23,9 @@ export default class CircularSelection extends BaseSelection {
   }
 
   static createFromPoints(points: Vector3[]) {
+    if(points.length < 2){
+      throw Error('not enought points provided')
+    }
     const [c, e] = points;
     return new CircularSelection([c.x, c.y], Math.hypot(e.x, e.y));
   }

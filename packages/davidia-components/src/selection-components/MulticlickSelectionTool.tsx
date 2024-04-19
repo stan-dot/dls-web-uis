@@ -223,7 +223,7 @@ function MulticlickSelectionTool(props: Props) {
     let done = false;
     if (useNewPointRef.current) {
       const lPt = pts[nPts - 1];
-      const absMovement = nPts === 1 ? 0 : getAbsoluteMovement(lPt, cPt);
+      const absMovement = nPts === 1 ? 0 : getAbsoluteMovement(lPt!, cPt);
       if (absMovement <= maxMovement) {
         // clicking in same spot when complete finishes selection
         done = isDown && isCompleteRef.current;

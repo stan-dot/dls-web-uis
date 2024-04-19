@@ -1,4 +1,4 @@
-import { Vector3 }  from 'three';
+import { Vector3 } from 'three';
 
 import OrientableSelection from './OrientableSelection.js';
 import { polar } from './utils.js';
@@ -26,9 +26,8 @@ export default class LinearSelection extends OrientableSelection {
 
   override toString() {
     const e = this._getPoint();
-    return `Line: ${this.start.toString()}; ${this.length}; ${this.angle}; to ${
-      e.x
-    },${e.y}`;
+    return `Line: ${this.start.toString()}; ${this.length}; ${this.angle}; to ${e.x
+      },${e.y}`;
   }
 
   static clicks() {
@@ -42,11 +41,14 @@ export default class LinearSelection extends OrientableSelection {
   }
 
   _setFromPoints(points: Vector3[]) {
-    const b = points[0];
+    if (points.length < 2) {
+      throw Error('need at least 2 points')
+    }
+    const b = points[0]!;
     this.start = [b.x, b.y];
     this.vStart.x = b.x;
     this.vStart.y = b.y;
-    const l = new Vector3().subVectors(points[1], b);
+    const l = new Vector3().subVectors(points[1]!, b);
     const pl = polar(l);
     this.length = pl[0];
     this.setAngle(pl[1]);

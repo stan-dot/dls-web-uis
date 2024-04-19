@@ -75,13 +75,12 @@ propaganda
     - [ ] SVG eclipse
 
 - [ ] regular components and files
+
   - [x] presets
   - [x] utils
   - [ ] calculations - partially done, need qrange and qspace
   - [ ] data entry - moved over stuffs
   - [ ] stores - moved, need arreglamiento
-
-IDEA - maybe the issue is with vite config not getting imported right?
 
 - [ ] just plain components (?)
 
@@ -91,7 +90,7 @@ IDEA - maybe the issue is with vite config not getting imported right?
 
 - [ ] configure auto github pages deployment too https://turbo.build/repo/docs/ci/github-actions
 
-- [ ] will have got one thing moved fully
+- [ ] will have got one thing moved fully - too complicated at the moment, refactoring the dedi one
 
 ### other packages and apps
 
@@ -120,3 +119,7 @@ odd and possibly reject this
 
   - <https://philipp.steinroetter.com/posts/supabase-turborepo>
   - <https://github.com/psteinroe/supasample>
+
+## old dependencies
+
+https://github.com/scijs/ndarray-concat-rows

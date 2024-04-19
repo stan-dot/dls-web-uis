@@ -61,8 +61,11 @@ export default class RectangularSelection extends OrientableSelection {
   }
 
   static createFromPoints(axesFlipped: [boolean, boolean], points: Vector3[]) {
-    const b = points[0].clone();
-    const l = new Vector3().subVectors(points[1], b);
+    if(points.length < 2){
+      throw Error('not enough points')
+    }
+    const b = points[0]!.clone();
+    const l = new Vector3().subVectors(points[1]!, b);
     let a = 0;
     const dx = l.x;
     const dy = l.y;

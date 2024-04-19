@@ -1,4 +1,4 @@
-import { Vector3 }  from 'three';
+import { Vector3 } from 'three';
 import { polar } from './utils.js';
 import OrientableSelection from './OrientableSelection.js';
 import type { SelectionBase } from './utils.js';
@@ -24,8 +24,11 @@ export default class EllipticalSelection extends OrientableSelection {
   }
 
   static createFromPoints(points: Vector3[]) {
-    const c = points[0];
-    const i = new Vector3().subVectors(points[1], c);
+    if (points.length < 2) {
+      throw Error('not enought points provided')
+    }
+    const c = points[0]!;
+    const i = new Vector3().subVectors(points[1]!, c);
     if (points.length < 3) {
       return new EllipticalSelection(
         [c.x, c.y],
@@ -34,7 +37,7 @@ export default class EllipticalSelection extends OrientableSelection {
     }
     const pi = polar(i);
     const si = pi[0];
-    const o = new Vector3().subVectors(points[2], c);
+    const o = new Vector3().subVectors(points[2]!, c);
     const so = Math.hypot(o.x, o.y);
     const ss = si < so ? [si, so] : [so, si];
 

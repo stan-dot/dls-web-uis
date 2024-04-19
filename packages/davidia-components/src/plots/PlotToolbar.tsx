@@ -211,7 +211,10 @@ function PlotToolbar(props: PlotToolbarProps) {
       props.selections &&
       props.selections.length > 0
     ) {
-      setCurrentSelectionID(props.selections[props.selections.length - 1].id);
+      const selection = props.selections[props.selections.length - 1];
+      if (selection) {
+        setCurrentSelectionID(selection.id);
+      }
     }
   }, [props.selections, currentSelectionID]);
 
