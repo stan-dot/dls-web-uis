@@ -1,8 +1,8 @@
-import UnitRange from "../calculations/unitRange";
+import { SIRange } from "@repo/science";
 
 interface RangeDiagramProps {
-  visibleRange: UnitRange;
-  requestedRange: UnitRange;
+  visibleRange: SIRange;
+  requestedRange: SIRange;
 }
 
 /**
@@ -19,12 +19,10 @@ export function RangeDiagram({
   visibleRange,
   requestedRange,
 }: RangeDiagramProps): JSX.Element {
-  const svgRange = visibleRange.max.toNumber() - visibleRange.min.toNumber();
+  const svgRange = visibleRange.span().value;
   const requestedMax = (requestedRange.max.toNumber() / svgRange) * 100;
   const requestedMin = (requestedRange.min.toNumber() / svgRange) * 100;
-  const rectColour = visibleRange.containsRange(requestedRange)
-    ? "green"
-    : "red";
+  const contains: boolean = visibleRange.containsRange(requestedRange)
 
   // guess text length
 
@@ -37,7 +35,7 @@ export function RangeDiagram({
         border: "solid black",
       }}
     >
-      <rect y="0" x="0" width={`100%`} height="50%" fill={rectColour}></rect>
+      <rect y="0" x="0" width={`100%`} height="50%" fill={contains ? 'green' : 'red'}></rect>
       <line
         x1={`${requestedMin}%`}
         y1={0}

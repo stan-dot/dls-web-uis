@@ -14,6 +14,7 @@ const pilatus: DetectorParams = {
 
 const longBoy: DetectorParams = {
   name: "long boy",
+  // todo add default units
   resolution: {
     width: 1475,
     height: 679,
@@ -28,4 +29,3 @@ export const detectorConfigDict: Record<string, DetectorParams> = {
   pilatus: pilatus,
   longBoy: longBoy,
 };
-

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import BeamlineTable from "./BeamlineTable";
+import { useDetectorStore } from "../stores/detectorStore";
 
 const GRID_ITEM_SIZE = 3;
 
@@ -30,6 +31,8 @@ export default function PresetDialog(props: {
   const [minCameraLength, setMinCameraLength] = React.useState<number>();
   const [maxCameraLangth, setMaxCameraLangth] = React.useState<number>();
   const [cameraLengthStep, setCameraLengthStep] = React.useState<number>();
+
+  const detectorList = useDetectorStore((state) => state.detectorList);
 
   const handleSubmit = () => {
     props.handleClose();

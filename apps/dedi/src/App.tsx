@@ -15,10 +15,10 @@ function App() {
         </a>
       </div>
       <h1>Dedi app</h1>
-        <Stack direction={"row"} spacing={1} margin={1}>
-            <DataSideBar />
-            <CentrePlot />
-        </Stack>
+      <Stack direction={"row"} spacing={1} margin={1}>
+        <DataSideBar />
+        <CentrePlot />
+      </Stack>
       <div className="card">
         <CountButton />
         <p>

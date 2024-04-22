@@ -14,14 +14,20 @@ import {
   TableRow,
 } from "@mui/material";
 import { ScatteringOptions, useResultStore } from "./resultsStore";
-import { ReciprocalWavelengthUnits, WavelengthUnits } from "../utils/units";
 import {
   convertBetweenQAndD,
   convertBetweenQAndS,
 } from "./scatteringQuantities";
-import UnitRange from "../calculations/unitRange";
+import { ReciprocalWavelengthUnits, WavelengthUnits } from "@repo/science/units";
+import { SIRange } from "@repo/science";
 
-export default function RangeTable(props: { qRange: UnitRange }): JSX.Element {
+const angstromChar = "\u212B";
+
+type RangeTableProps = {
+  qRange: SIRange;
+};
+
+export default function RangeTable({ qRange }: RangeTableProps): JSX.Element {
   const resultsStore = useResultStore();
   const updateQUnits = useResultStore((state) => state.updateQUnits);
   const updateSUnits = useResultStore((state) => state.updateSUnits);
@@ -40,8 +46,8 @@ export default function RangeTable(props: { qRange: UnitRange }): JSX.Element {
   const handleDunits = (event: SelectChangeEvent<WavelengthUnits>) => {
     updateDUnits(event.target.value as WavelengthUnits);
   };
-  const qRange = props.qRange.to(resultsStore.qUnits as string);
-  const sRange = props.qRange
+  const qRangeCorrected = qRange.to(resultsStore.qUnits as string);
+  const sRange = qRange
     .apply(convertBetweenQAndS)
     .to(resultsStore.sUnits as string);
   const dRange = props.qRange
@@ -124,7 +130,7 @@ export default function RangeTable(props: { qRange: UnitRange }): JSX.Element {
                     {WavelengthUnits.nanmometres}
                   </MenuItem>
                   <MenuItem value={WavelengthUnits.angstroms}>
-                    {"\u212B"}
+                    {angstromChar}
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -154,11 +160,11 @@ export default function RangeTable(props: { qRange: UnitRange }): JSX.Element {
                   value={resultsStore.dUnits}
                   onChange={handleDunits}
                 >
-                  <MenuItem value={WavelengthUnits.nanmometres}>
-                    {WavelengthUnits.nanmometres}
+                  <MenuItem value={WavelengthUnits.nanometers}>
+                    {WavelengthUnits.nanometers}
                   </MenuItem>
                   <MenuItem value={WavelengthUnits.angstroms}>
-                    {"\u212B"}
+                    {angstromChar}
                   </MenuItem>
                 </Select>
               </FormControl>

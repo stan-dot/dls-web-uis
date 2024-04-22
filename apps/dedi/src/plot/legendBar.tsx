@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { PlotAxes, usePlotStore } from "./plotStore";
+import ColorPickerPopover from "@repo/ui/color-picker-popover";
 
 export default function LegendBar(): JSX.Element {
   const plotConfig = usePlotStore();
@@ -35,10 +36,10 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
-                    color={plotConfig.detectorColour}
+                  <ColorPickerPopover
+                    color={plotConfig.detectorColor}
                     onChangeComplete={(color) =>
-                      plotConfig.update({ detectorColour: color.rgb })
+                      plotConfig.update({ detectorColor: color.rgb })
                     }
                   />
                   <Typography>Detector:</Typography>
@@ -56,7 +57,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.cameraTubeColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ cameraTubeColor: color.rgb })
@@ -77,7 +78,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.beamstopColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ beamstopColor: color.rgb })
@@ -98,7 +99,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.clearanceColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ clearanceColor: color.rgb })
@@ -119,7 +120,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.visibleColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ visibleColor: color.rgb })
@@ -140,7 +141,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.requestedRangeColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ requestedRangeColor: color.rgb })
@@ -161,7 +162,7 @@ export default function LegendBar(): JSX.Element {
               }
               label={
                 <Stack direction={"row"}>
-                  <ColourPickerPopover
+                  <ColorPickerPopover
                     color={plotConfig.inaccessibleRangeColor}
                     onChangeComplete={(color) =>
                       plotConfig.update({ inaccessibleRangeColor: color.rgb })

@@ -7,7 +7,8 @@ import {
   SvgRect,
   VisCanvas,
 } from "@h5web/lib";
-import { Box, Card, CardContent, Stack } from "@mui/material";
+import { Card, CardContent, Stack } from "@mui/material";
+import * as mathjs from "mathjs";
 import { Vector3 } from "three";
 import { computeQrange } from "../calculations/qrange";
 import ResultsBar from "../results/resultsBar";
@@ -15,23 +16,24 @@ import {
   useResultStore,
 } from "../results/resultsStore";
 
+import { SIRange } from "@repo/science";
+import SvgAxisAlignedEllipse from "@repo/ui/svg-ellipse";
+import { useBeamstopStore } from "../stores/beamstopStore";
+import { useCameraTubeStore } from "../stores/cameraTubeStore";
+import { DetectorParamsStore, useDetectorStore } from "../stores/detectorStore";
+import { Beamstop, CameraTube, DetectorParams } from "../types";
 import { Plotter } from "./Plotter";
 import LegendBar from "./legendBar";
 import { usePlotStore } from "./plotStore";
 import { color2String, getDomains } from "./plotUtils";
-import SvgAxisAlignedEllipse from "@repo/ui/svg-ellipse";
-import { useBeamlineConfig, getScaleFactor, getReferencePoints, createPlots, getRange, getRequestedRange } from "./useBeamlineConfig";
-import { useDetectorStore } from "../stores/detectorStore";
-import { Beamstop } from "../types";
-import { useBeamstopStore } from "../stores/beamstopStore";
-import { useCameraTubeStore } from "../stores/cameraTubeStore";
+import { createPlots, getRange, getReferencePoints, getRequestedRange, getScaleFactor, useBeamlineConfig } from "./useBeamlineConfig";
 
 export default function CentrePlot(): JSX.Element {
   const plotConfig = usePlotStore();
   const beamlineConfig = useBeamlineConfig();
 
   // todo some form of destructuring notation {...state} might simplify this
-  const detector = useDetectorStore<Detector>((state) => {
+  const detector = useDetectorStore<DetectorParams>((state: DetectorParamsStore) => {
     return {
       resolution: state.resolution,
       pixelSize: state.pixelSize,
@@ -46,12 +48,13 @@ export default function CentrePlot(): JSX.Element {
     };
   });
 
-  const cameraTube = useCameraTubeStore<CircularDevice>((state) => {
+  const cameraTube = useCameraTubeStore<CameraTube>((state) => {
     return { centre: state.centre, diameter: state.diameter };
   });
 
-  const scaleFactor: mathjs.Unit | null = getScaleFactor(beamlineConfig);
+  const scaleFactor: number | null = getScaleFactor(beamlineConfig);
 
+  // todo think about this
   mathjs.createUnit("xpixel", detector.pixelSize.width.toString());
   mathjs.createUnit("ypixel", detector.pixelSize.height.toString());
 
@@ -64,12 +67,13 @@ export default function CentrePlot(): JSX.Element {
 
   // todo move these 2 statements into the ResultsBar component
   //  as that's the only place that uses these
-  const visibleQRangeUnits = UnitRange.fromNumericRange(
+  const visibleQRangeUnits = SIRange.fromNumericRange(
     visibleQRange,
     "m^-1",
   ).to("nm^-1");
+
   console.log(visibleQRange);
-  const fullQRangeUnits = UnitRange.fromNumericRange(fullQRange, "m^-1").to(
+  const fullQRangeUnits = SIRange.fromNumericRange(fullQRange, "m^-1").to(
     "nm^-1",
   );
 
@@ -96,7 +100,7 @@ export default function CentrePlot(): JSX.Element {
   );
 
   // abstracting state logic away from the display logic
-  const requestedRange = useResultStore<UnitRange | null>(getRange());
+  const requestedRange = useResultStore<SIRange | null>(getRange());
 
   let plotRequestedRange = {
     start: new Vector3(0, 0),
@@ -122,7 +126,7 @@ export default function CentrePlot(): JSX.Element {
   const domains = getDomains(plotDetector);
 
   return (
-    <Box>
+    <>
       <Stack direction="column" spacing={1}>
         <Stack direction="row" spacing={1}>
           <Card>
@@ -198,7 +202,7 @@ export default function CentrePlot(): JSX.Element {
                         {plotConfig.detector && (
                           <SvgRect
                             coords={[detectorLower, detectorUpper]}
-                            fill={color2String(plotConfig.detectorColour)}
+                            fill={color2String(plotConfig.detectorColor)}
                             id="detector"
                           />
                         )}
@@ -259,15 +263,16 @@ export default function CentrePlot(): JSX.Element {
               </div>
             </CardContent>
           </Card>
-          <Box flexGrow={1}>
+          {/* <Box flexGrow={1}> */}
+          <div>
             <LegendBar />
-          </Box>
+          </div>
         </Stack>
         <ResultsBar
           visableQRange={visibleQRangeUnits}
           fullQrange={fullQRangeUnits}
         />
       </Stack>
-    </Box>
+    </>
   );
 }

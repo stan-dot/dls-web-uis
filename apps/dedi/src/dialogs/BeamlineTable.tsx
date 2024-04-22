@@ -1,4 +1,6 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { beamlineConfigDict } from "../config/beamlines";
+import { BeamlineParams } from "../types";
 
 interface BeamlineTableRow {
   name: string;
@@ -12,10 +14,10 @@ interface BeamlineTableRow {
   cameraLengthStep: number;
 }
 
-function createData(name: string, beamline: AppDataFormat): BeamlineTableRow {
+function createData(name: string, beamline: BeamlineParams): BeamlineTableRow {
   return {
     name: name,
-    detector: beamline.detector,
+    detector: beamline.detectorName,
     angle: beamline.angle.toNumber("deg"),
     cameraLength: beamline.cameraLength,
     minWavelength: beamline.minWavelength.toNumber("nm"),
@@ -28,7 +30,7 @@ function createData(name: string, beamline: AppDataFormat): BeamlineTableRow {
 
 export default function BeamlineTable() {
   const displayArray: BeamlineTableRow[] = [];
-  for (const [key, value] of Object.entries(presetList)) {
+  for (const [key, value] of Object.entries(beamlineConfigDict)) {
     displayArray.push(createData(key, value));
   }
 
@@ -50,9 +52,9 @@ export default function BeamlineTable() {
       rows={displayArray}
       getRowId={(row: BeamlineTableRow) => row.name}
       columns={columns}
-      components={{ Toolbar: GridToolbar }}
+      slots={{ toolbar: GridToolbar }}
       sx={{ border: 0 }}
-      disableSelectionOnClick
+      disableRowSelectionOnClick
     />
   );
 }

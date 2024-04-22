@@ -21,14 +21,14 @@ export type BeamlineParams = {
 };
 
 export type Beamstop = {
-  centre:SimpleVector2;
-  diameter: number;
+  centre: SimpleVector2;
+  diameter: SIUnit;
   clearance: number;
 };
 
 export type CameraTube = {
   centre: SimpleVector2;
-  diameter: number;
+  diameter: SIUnit;
 };
 
 // DETECTORS

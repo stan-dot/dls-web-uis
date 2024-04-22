@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 
 import { useBeamlineConfigStore } from "../../stores/beamlineconfigStore";
+import { AngleUnits, EnergyUnits, WavelengthUnits, wavelengthToEnergy } from "@repo/science/units";
+import { SIUnit } from "@repo/science";
 
 /**
  * A function to process numeric texbox inputs in a consistant way.
@@ -42,13 +44,13 @@ export default function BeampropertiesDataEntry() {
 
   const handleWavelength = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newWavelength = parseNumericInput(event.target.value);
+    if (newWavelength === null) return;
     beamlineConfig.updateWavelength(
       newWavelength,
       beamlineConfig.wavelength.formatUnits() as WavelengthUnits,
     );
-    const newEnergy = wavelength2EnergyConverter(
-      unit(newWavelength ?? NaN, beamlineConfig.wavelength.formatUnits()),
-    );
+    const w:SIUnit = new SIUnit(newWavelength ?? NaN, beamlineConfig.wavelength.formatUnits());
+    const newEnergy = wavelengthToEnergy( w,);
     beamlineConfig.updateEnergy(
       newEnergy.to(beamlineConfig.energy.formatUnits()).toNumber(),
       beamlineConfig.energy.formatUnits() as EnergyUnits,
@@ -128,8 +130,8 @@ export default function BeampropertiesDataEntry() {
             value={beamlineConfig.wavelength.formatUnits() as WavelengthUnits}
             onChange={handleWavelengthUnits}
           >
-            <MenuItem value={WavelengthUnits.nanmometres}>
-              {WavelengthUnits.nanmometres}
+            <MenuItem value={WavelengthUnits.nanometers}>
+              {WavelengthUnits.nanometers}
             </MenuItem>
             <MenuItem value={WavelengthUnits.angstroms}>{"\u212B"}</MenuItem>
           </Select>

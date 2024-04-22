@@ -1,5 +1,6 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { DetectorParams } from "../types";
+import { useDetectorStore } from "../stores/detectorStore";
 
 interface DetectorTableRow {
   name: string;
@@ -20,6 +21,9 @@ function createData(name: string, detector: DetectorParams): DetectorTableRow {
 }
 
 export default function DetectorTable() {
+
+  const detectorList = useDetectorStore((state) => state.detectorList);
+
   const displayArray: DetectorTableRow[] = [];
   // todo think about persistence, maybe in cookies. why not just a global context?
   for (const [key, value] of Object.entries(detectorList)) {
@@ -40,9 +44,9 @@ export default function DetectorTable() {
       rows={displayArray}
       getRowId={(row: DetectorTableRow) => row.name}
       columns={columns}
-      components={{ Toolbar: GridToolbar }}
+      slots={{ toolbar: GridToolbar }}
       sx={{ border: 0 }}
-      disableSelectionOnClick
+      disableRowSelectionOnClick
     />
   );
 }

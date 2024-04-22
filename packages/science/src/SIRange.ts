@@ -18,6 +18,12 @@ export class SIRange {
     this.max = large;
   }
 
+  public span(): SIUnit {
+    const v = Math.abs(this.max.value - this.min.value);
+    const u = new SIUnit(v, this.min.name);
+    return u;
+  }
+
   public containsValue(u: SIUnit): boolean {
     return u.value >= this.min.value && u.value <= this.max.value;
   }
@@ -50,6 +56,7 @@ export class SIRange {
   public toString(): string {
     return `(min:${this.min.toString()}, max:${this.max.toString()})`;
   }
+
   public restrictToPositive(): SIRange {
     const min = this.min.value < 0 ? SIUnit.ZERO : this.min;
     return new SIRange(min, this.max);

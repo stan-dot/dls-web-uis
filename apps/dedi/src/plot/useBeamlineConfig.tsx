@@ -11,6 +11,7 @@ import {
 import { Plotter } from "./Plotter";
 import { UnitVector } from "./plotUtils";
 import { BeamlineParams, Beamstop, CameraTube, DetectorParams } from "../types";
+import { SIRange, SIUnit } from "@repo/science";
 
 export function getScaleFactor(beamlineConfig: BeamlineParams): number | null {
   let scaleFactor: number = null;
@@ -56,26 +57,27 @@ export function getReferencePoints(
   cameraTube: CameraTube
 ) {
   const minPoint: UnitVector = {
-    x: mathjs.unit(ptMin.x, "m"),
-    y: mathjs.unit(ptMin.y, "m"),
+    x: new SIUnit(ptMin.x, "m"),
+    y: new SIUnit(ptMin.y, "m"),
   };
 
   const maxPoint: UnitVector = {
-    x: mathjs.unit(ptMax.x, "m"),
-    y: mathjs.unit(ptMax.y, "m"),
+    x: new SIUnit(ptMax.x, "m"),
+    y: new SIUnit(ptMax.y, "m"),
   };
 
   const beamstopCentre: UnitVector = {
-    x: mathjs.unit(beamstop.centre.x ?? NaN, "xpixel"),
-    y: mathjs.unit(beamstop.centre.y ?? NaN, "ypixel"),
+    x: new SIUnit(beamstop.centre.x ?? NaN, "xpixel"),
+    y: new SIUnit(beamstop.centre.y ?? NaN, "ypixel"),
   };
 
   const cameraTubeCentre: UnitVector = {
-    x: mathjs.unit(cameraTube.centre.x ?? NaN, "xpixel"),
-    y: mathjs.unit(cameraTube.centre.y ?? NaN, "ypixel"),
+    x: new SIUnit(cameraTube.centre.x ?? NaN, "xpixel"),
+    y: new SIUnit(cameraTube.centre.y ?? NaN, "ypixel"),
   };
   return { beamstopCentre, cameraTubeCentre, minPoint, maxPoint };
 }
+
 export function createPlots(
   plotter: Plotter,
   beamstopCentre: UnitVector,
@@ -124,7 +126,7 @@ export function createPlots(
   };
 }
 export function getRequestedRange(
-  requestedRange: UnitRange,
+  requestedRange: SIRange,
   beamlineConfig: BeamlineParams,
   beamstopCentre: UnitVector,
   plotRequestedRange: { start: Vector3; end: Vector3; },
@@ -151,17 +153,18 @@ export function getRequestedRange(
   );
   return plotRequestedRange;
 }
-export function getRange(): (state: ResultStore) => UnitRange | null {
+
+export function getRange(): (state: ResultStore) => SIRange | null {
   return (state) => {
     if (!state.requestedMax || !state.requestedMin) {
       return null;
     }
 
-    const getUnit = (value: number): mathjs.Unit => {
-      let result: mathjs.Unit;
+    const getUnit = (value: number): SIUnit => {
+      let result: SIUnit;
       switch (state.requested) {
         case ScatteringOptions.d:
-          result = convertBetweenQAndD(mathjs.unit(value, state.dUnits));
+          result = convertBetweenQAndD(SIUnit(value, state.dUnits));
           break;
         case ScatteringOptions.s:
           result = convertBetweenQAndS(mathjs.unit(value, state.sUnits));
@@ -172,7 +175,7 @@ export function getRange(): (state: ResultStore) => UnitRange | null {
       return result;
     };
 
-    return new UnitRange(
+    return new SIRange(
       getUnit(state.requestedMin),
       getUnit(state.requestedMax)
     );

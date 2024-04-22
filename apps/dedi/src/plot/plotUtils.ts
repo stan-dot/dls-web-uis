@@ -1,3 +1,4 @@
+import { SIRange, SIUnit } from "@repo/science";
 import { RGBColor } from "react-color";
 import { Vector3 } from "three";
 
@@ -34,8 +35,8 @@ export interface PlotEllipse {
 }
 
 export interface UnitVector {
-  x: math.Unit;
-  y: math.Unit;
+  x: SIUnit;
+  y: SIUnit;
 }
 
 export interface PlotRectangle {

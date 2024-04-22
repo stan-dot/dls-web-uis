@@ -126,7 +126,7 @@ export default function DataSideBar(): JSX.Element {
               Add detector
             </Button>
             <DetectorDialog
-              open={openDetector}
+              isOpen={openDetector}
               handleClose={handleCloseDetector}
               handleOpen={handleClickOpenDetector}
             />

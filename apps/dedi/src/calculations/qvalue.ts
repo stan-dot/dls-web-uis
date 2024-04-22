@@ -3,7 +3,6 @@ import { SIUnit } from "@repo/science/SIUnit";
 
 type UnitVector = { x: SIUnit; y: SIUnit };
 
-
 const calculateDistanceFromQValue = (
   qValue: number,
   cameraLength: number,
@@ -35,7 +34,6 @@ export const getPointForQ = (
   wavelength: SIUnit,
   beamstopCentre: UnitVector
 ): UnitVector => {
-
   const relevantThings: SIUnit[] = [
     qValue,
     cameralength,
@@ -45,9 +43,7 @@ export const getPointForQ = (
     beamstopCentre.y,
   ];
 
-  const [q, c, v, a, beamX, beamY] = relevantThings.map((i) =>
-    i.value
-  );
+  const [q, c, v, a, beamX, beamY] = relevantThings.map((i) => i.value);
 
   const ray = new Ray(
     new Vector2(Math.cos(a), Math.sin(a)),
@@ -57,7 +53,7 @@ export const getPointForQ = (
   const distance = calculateDistanceFromQValue(q, c, v) ?? 0;
 
   const result = ray.getPointAtDistance(distance);
-  const x = SIUnit(result.x, "m");
-  const y = SIUnit(result.y, "m");
+  const x = new SIUnit(result.x, "m");
+  const y = new SIUnit(result.y, "m");
   return { x, y };
 };

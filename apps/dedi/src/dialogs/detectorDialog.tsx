@@ -11,45 +11,59 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
-import DetectorTable from "./detectorTable";
+import { SIUnit } from '@repo/science/SIUnit';
+import { useState } from "react";
 import { useDetectorStore } from "../stores/detectorStore";
-import { SIUnit } from '@repo/science/SIUnit'
+import DetectorTable from "./detectorTable";
 
-export default function DetectorDialog(props: {
-  open: boolean;
+type DetectorDialogState = {
+  resolutionHeight: number;
+  resolutionWidth: number;
+  pixelHeight: number;
+  pixelWidth: number;
+  name: string;
+};
+
+const initialState: DetectorDialogState = {
+  resolutionHeight: 0,
+  resolutionWidth: 0,
+  pixelHeight: 0,
+  pixelWidth: 0,
+  name: ""
+}
+
+type DetectorDialogProps = {
+  isOpen: boolean;
   handleClose: () => void;
   handleOpen: () => void;
-}): JSX.Element {
+};
+
+export default function DetectorDialog({ isOpen, handleClose, handleOpen }: DetectorDialogProps): JSX.Element {
   const detectorStore = useDetectorStore();
-  const [resolutionHeight, setResolutionHeight] = React.useState<number>();
-  const [resolutionWidth, setResolutionWidth] = React.useState<number>();
-  const [pixelHeight, setPixelHeight] = React.useState<number>();
-  const [pixelWidth, setPixelWidth] = React.useState<number>();
-  const [name, setName] = React.useState<string>();
+  const [state, setState] = useState<DetectorDialogState>(initialState)
 
   const handleSubmit = () => {
     if (
-      resolutionHeight &&
-      resolutionWidth &&
-      pixelHeight &&
-      pixelWidth &&
-      name
+      state.resolutionHeight &&
+      state.resolutionWidth &&
+      state.pixelHeight &&
+      state.pixelWidth &&
+      state.name
     ) {
       detectorStore.addNewDetector(name, {
-        resolution: { height: resolutionHeight, width: resolutionWidth },
+        resolution: { height: state.resolutionHeight, width: state.resolutionWidth },
         pixelSize: {
-          height: new SIUnit(pixelHeight, "mm"),
-          width: new SIUnit(pixelWidth, "mm"),
+          height: new SIUnit(state.pixelHeight, "mm"),
+          width: new SIUnit(state.pixelWidth, "mm"),
         },
       });
     }
 
-    props.handleClose();
+    handleClose();
   };
 
   return (
-    <Dialog open={props.open} keepMounted onClose={props.handleClose}>
+    <Dialog open={isOpen} keepMounted onClose={handleClose}>
       <DialogTitle>{"Detectors"}</DialogTitle>
       <DialogContent>
         <Stack spacing={2}>
@@ -61,7 +75,7 @@ export default function DetectorDialog(props: {
               <TextField
                 id="outlined-basic"
                 label="name"
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => setState({ ...state, name: event.target.value })}
                 variant="outlined"
                 size="small"
               />
@@ -74,7 +88,7 @@ export default function DetectorDialog(props: {
                 type="number"
                 label="width"
                 onChange={(event) =>
-                  setResolutionWidth(parseFloat(event.target.value))
+                  setState({ ...state, resolutionWidth: parseFloat(event.target.value) })
                 }
                 size="small"
               />
@@ -84,7 +98,7 @@ export default function DetectorDialog(props: {
                 type="number"
                 label="height"
                 onChange={(event) =>
-                  setResolutionHeight(parseFloat(event.target.value))
+                  setState({ ...state, resolutionHeight: parseFloat(event.target.value) })
                 }
                 size="small"
               />
@@ -97,7 +111,7 @@ export default function DetectorDialog(props: {
                 type="number"
                 label="x"
                 onChange={(event) =>
-                  setPixelWidth(parseFloat(event.target.value))
+                  setState({ ...state, pixelWidth: parseFloat(event.target.value) })
                 }
                 size="small"
                 InputProps={{
@@ -112,7 +126,7 @@ export default function DetectorDialog(props: {
                 type="number"
                 label="y"
                 onChange={(event) =>
-                  setPixelHeight(parseFloat(event.target.value))
+                  setState({ ...state, pixelHeight: parseFloat(event.target.value) })
                 }
                 size="small"
                 InputProps={{
