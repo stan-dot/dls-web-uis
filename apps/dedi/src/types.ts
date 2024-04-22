@@ -11,8 +11,9 @@ export type BeamlineParams = {
   beamstop: Beamstop;
   cameraTube: CameraTube;
   angle: number;
-  wavelength: null;
+  wavelength: number;
   cameraLength: number;
+  // todo move this into a separate type and then do composition
   readonly minWavelength: number;
   readonly maxWavelength: number;
   readonly minCameraLength: number;
@@ -35,8 +36,8 @@ export type CameraTube = {
 
 export type DetectorParams = {
   name: string;
-  readonly resolution: PixelSize;
-  readonly pixelSize: PixelSize;
+  resolution: PixelSize;
+  pixelSize: PixelSize;
 };
 
 export type PixelSize = {

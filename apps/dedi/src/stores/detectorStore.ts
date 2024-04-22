@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { DetectorParams } from "../types";
 import { DistanceUnits } from "@repo/science/units";
+import { beamlineConfigDict } from "../config/beamlines";
+import { detectorConfigDict } from "../config/detectors";
 
 export interface DetectorParamsStore {
   currentDetectorName: string;
@@ -10,10 +12,12 @@ export interface DetectorParamsStore {
   addNewDetectorParams: (name: string, detector: DetectorParams) => void;
 }
 
+const defaultConfig = beamlineConfigDict[0]!;
+
 export const useDetectorStore = create<DetectorParamsStore>((set) => ({
-  currentDetectorName: defaultConfig.detector,
-  ...detectorList[defaultConfig.detector],
-  detectorList: detectorList,
+  currentDetectorName: defaultConfig.detectorName,
+  ...detectorConfigDict[defaultConfig.detectorName],
+  detectorList: detectorConfigDict,
   updateDetectorParams: (newDetectorParams: string) =>
     set((state) => ({
       ...state.detectorList[newDetectorParams],
@@ -27,6 +31,6 @@ export const useDetectorStore = create<DetectorParamsStore>((set) => ({
       },
     })),
   addNewDetectorParams: (name: string, detector: DetectorParams) => {
-    detectorList[name] = detector;
+    detectorConfigDict[name] = detector;
   },
 }));

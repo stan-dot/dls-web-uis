@@ -3,6 +3,7 @@ type SIResult = {
   error: Error | undefined;
 };
 
+// todo add a modifier n, m, etc for nano mili, etc. including formatting
 export class SIUnit {
   public name: string;
   public value: number;

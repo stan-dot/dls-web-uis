@@ -21,7 +21,7 @@ export default class QSpace {
     detectorFixedProperties: DetectorParams,
     detProps: DetectorDynamicState,
     wavelength: number,
-    qScale: number
+    qScale: number = 2 * Math.PI
   ) {
     this.detectorFixedProperties = detectorFixedProperties;
     this.detectorDynamicState = detProps;

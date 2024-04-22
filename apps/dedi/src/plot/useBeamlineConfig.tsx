@@ -12,6 +12,7 @@ import { Plotter } from "./Plotter";
 import { UnitVector } from "./plotUtils";
 import { BeamlineParams, Beamstop, CameraTube, DetectorParams } from "../types";
 import { SIRange, SIUnit } from "@repo/science";
+import { useBeamlineConfigStore } from "../stores/beamlineconfigStore";
 
 export function getScaleFactor(beamlineConfig: BeamlineParams): number | null {
   let scaleFactor: number = null;
@@ -164,7 +165,7 @@ export function getRange(): (state: ResultStore) => SIRange | null {
       let result: SIUnit;
       switch (state.requested) {
         case ScatteringOptions.d:
-          result = convertBetweenQAndD(SIUnit(value, state.dUnits));
+          result = convertBetweenQAndD(new SIUnit(value, state.dUnits));
           break;
         case ScatteringOptions.s:
           result = convertBetweenQAndS(mathjs.unit(value, state.sUnits));

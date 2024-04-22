@@ -74,14 +74,10 @@ export default function RangeTable({ qRange }: RangeTableProps): JSX.Element {
               {ScatteringOptions.q}
             </TableCell>
             <TableCell align="right">
-              {isNaN(qRange.min.toNumber())
-                ? ""
-                : qRange.min.toNumber().toFixed(4)}
+              {isNaN(qRangeCorrected.min.value) ? "" : qRangeCorrected.min.value.toFixed(4)}
             </TableCell>
             <TableCell align="right">
-              {isNaN(qRange.max.toNumber())
-                ? ""
-                : qRange.max.toNumber().toFixed(4)}
+              {isNaN(qRangeCorrected.max.value) ? "" : qRangeCorrected.max.value.toFixed(4)}
             </TableCell>
             <TableCell align="right">
               <FormControl>
@@ -126,8 +122,8 @@ export default function RangeTable({ qRange }: RangeTableProps): JSX.Element {
                   value={resultsStore.sUnits}
                   onChange={handleSunits}
                 >
-                  <MenuItem value={WavelengthUnits.nanmometres}>
-                    {WavelengthUnits.nanmometres}
+                  <MenuItem value={WavelengthUnits.nanometers}>
+                    {WavelengthUnits.nanometers}
                   </MenuItem>
                   <MenuItem value={WavelengthUnits.angstroms}>
                     {angstromChar}

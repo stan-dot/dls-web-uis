@@ -54,10 +54,6 @@ export default function CentrePlot(): JSX.Element {
 
   const scaleFactor: number | null = getScaleFactor(beamlineConfig);
 
-  // todo think about this
-  mathjs.createUnit("xpixel", detector.pixelSize.width.toString());
-  mathjs.createUnit("ypixel", detector.pixelSize.height.toString());
-
   const { ptMin, ptMax, visibleQRange, fullQRange } = computeQrange(
     detector,
     beamstop,
