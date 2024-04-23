@@ -15,8 +15,8 @@ import {
 } from "@mui/material";
 import { ScatteringOptions, useResultStore } from "./resultsStore";
 import {
-  convertBetweenQAndD,
-  convertBetweenQAndS,
+  convertFromQtoD,
+  convertFromQToS,
 } from "./scatteringQuantities";
 import { ReciprocalWavelengthUnits, WavelengthUnits } from "@repo/science/units";
 import { SIRange } from "@repo/science";
@@ -48,10 +48,10 @@ export default function RangeTable({ qRange }: RangeTableProps): JSX.Element {
   };
   const qRangeCorrected = qRange.to(resultsStore.qUnits as string);
   const sRange = qRange
-    .apply(convertBetweenQAndS)
+    .apply(convertFromQToS)
     .to(resultsStore.sUnits as string);
   const dRange = props.qRange
-    .apply(convertBetweenQAndD)
+    .apply(convertFromQtoD)
     .to(resultsStore.dUnits as string);
 
   return (

@@ -7,12 +7,12 @@ export class Plotter {
   plotAxes: PlotAxes;
   private xunit: string;
   private yunit: string;
-  private scaleFactor: mathjs.Unit | null;
+  private scaleFactorForReciprocalUnits: mathjs.Unit | null;
   constructor(plotAxes: PlotAxes, scaleFactor: mathjs.Unit | null) {
     this.xunit = plotAxes as string;
     this.yunit = plotAxes as string;
     this.plotAxes = plotAxes;
-    this.scaleFactor = scaleFactor;
+    this.scaleFactorForReciprocalUnits = scaleFactor;
     if (plotAxes === PlotAxes.pixel) {
       this.xunit = "xpixel";
       this.yunit = "ypixel";
@@ -47,12 +47,12 @@ export class Plotter {
     }
 
     // todo suggestion consider forcing not null scale factor
-    if (!this.scaleFactor) {
+    if (!this.scaleFactorForReciprocalUnits) {
       throw TypeError("reciprocal units need a scaleFactor");
     }
     const newcentre = Plotter.convert2QSpace(
       centre,
-      this.scaleFactor,
+      this.scaleFactorForReciprocalUnits,
       beamstopCentre
     );
     const newcentreVec = this._getCentreVector(newcentre);
@@ -60,7 +60,7 @@ export class Plotter {
     const endPointX = new Vector3(
       newcentreVec.x +
         mathjs
-          .multiply(mathjs.divide(diameter, 2), this.scaleFactor)
+          .multiply(mathjs.divide(diameter, 2), this.scaleFactorForReciprocalUnits)
           .to(this.xunit)
           .toNumber(),
       newcentreVec.y
@@ -104,13 +104,13 @@ export class Plotter {
       };
     }
 
-    if (!this.scaleFactor) {
+    if (!this.scaleFactorForReciprocalUnits) {
       throw TypeError("reciprocal units need a scaleFactor");
     }
 
     const newcentre = Plotter.convert2QSpace(
       centre,
-      this.scaleFactor,
+      this.scaleFactorForReciprocalUnits,
       beamstopCentre
     );
     const newcentreVec = new Vector3(
@@ -121,11 +121,11 @@ export class Plotter {
     const endXVector = new Vector3(
       newcentreVec.x +
         mathjs
-          .multiply(mathjs.divide(diameter, 2), this.scaleFactor)
+          .multiply(mathjs.divide(diameter, 2), this.scaleFactorForReciprocalUnits)
           .to(this.xunit)
           .toNumber() +
         mathjs
-          .multiply(mathjs.unit(clearance, "xpixel"), this.scaleFactor)
+          .multiply(mathjs.unit(clearance, "xpixel"), this.scaleFactorForReciprocalUnits)
           .to(this.xunit)
           .toNumber(),
       newcentreVec.y
@@ -136,7 +136,7 @@ export class Plotter {
       newcentreVec.y +
         this._scale(diameter, this.yunit) +
         mathjs
-          .multiply(mathjs.unit(clearance, "ypixel"), this.scaleFactor)
+          .multiply(mathjs.unit(clearance, "ypixel"), this.scaleFactorForReciprocalUnits)
           .to(this.yunit)
           .toNumber()
     );
@@ -156,7 +156,7 @@ export class Plotter {
   private _scale(diameter: mathjs.Unit, unit: string): number {
     // todo if the scale factor is forced to be defined then "!" not needed
     return mathjs
-      .multiply(mathjs.divide(diameter, 2), this.scaleFactor!)
+      .multiply(mathjs.divide(diameter, 2), this.scaleFactorForReciprocalUnits!)
       .to(unit)
       .toNumber();
   }
@@ -175,7 +175,7 @@ export class Plotter {
       return { lowerBound, upperBound };
     }
 
-    if (!this.scaleFactor) {
+    if (!this.scaleFactorForReciprocalUnits) {
       throw TypeError("reciprocal units need a scaleFactor");
     }
 
@@ -193,17 +193,17 @@ export class Plotter {
     beamstopCentre: UnitVector
   ): PlotRange => {
     if (this.plotAxes === PlotAxes.reciprocal) {
-      if (!this.scaleFactor) {
+      if (!this.scaleFactorForReciprocalUnits) {
         throw TypeError("reciprocal units need a scaleFactor");
       }
       startPoint = Plotter.convert2QSpace(
         startPoint,
-        this.scaleFactor,
+        this.scaleFactorForReciprocalUnits,
         beamstopCentre
       );
       endPoint = Plotter.convert2QSpace(
         endPoint,
-        this.scaleFactor,
+        this.scaleFactorForReciprocalUnits,
         beamstopCentre
       );
     }
@@ -239,7 +239,7 @@ export class Plotter {
   ) {
     const lowerBound = Plotter.convert2QSpace(
       { x: mathjs.unit(0, "xpixel"), y: mathjs.unit(0, "ypixel") },
-      this.scaleFactor!,
+      this.scaleFactorForReciprocalUnits!,
       beamstopCentre
     );
 
@@ -251,12 +251,12 @@ export class Plotter {
     const upperBoundVector = new Vector3(
       lowerBound.x.to(this.xunit).toNumber() +
         mathjs
-          .multiply(mathjs.unit(resolution.width, "xpixel"), this.scaleFactor!)
+          .multiply(mathjs.unit(resolution.width, "xpixel"), this.scaleFactorForReciprocalUnits!)
           .to(this.xunit)
           .toNumber(),
       lowerBound.y.to(this.yunit).toNumber() +
         mathjs
-          .multiply(mathjs.unit(resolution.height, "ypixel"), this.scaleFactor!)
+          .multiply(mathjs.unit(resolution.height, "ypixel"), this.scaleFactorForReciprocalUnits!)
           .to(this.yunit)
           .toNumber()
     );

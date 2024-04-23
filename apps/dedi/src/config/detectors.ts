@@ -3,11 +3,11 @@ import { DetectorParams } from "../types";
 const pilatus: DetectorParams = {
   name: "Pilatus P3-2M",
   resolution: {
-    width: 1475,
+    width: 1475, // pixels
     height: 1679,
   },
   pixelSize: {
-    width: 0.172,
+    width: 0.172, // mm
     height: 0.172,
   },
 };

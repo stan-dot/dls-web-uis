@@ -25,7 +25,7 @@ import { Plotter } from "./Plotter";
 import LegendBar from "./legendBar";
 import { usePlotStore } from "./plotStore";
 import { color2String, getDomains } from "./plotUtils";
-import { createPlots, getRange, getReferencePoints, getRequestedRange, getScaleFactor, useBeamlineConfig } from "./useBeamlineConfig";
+import { createPlots, getRange, getReferencePoints, getRequestedRange, getScaleFactorForReciprocalUnits, useBeamlineConfig } from "./useBeamlineConfig";
 
 export default function CentrePlot(): JSX.Element {
   const plotConfig = usePlotStore();
@@ -51,7 +51,7 @@ export default function CentrePlot(): JSX.Element {
     return { centre: state.centre, diameter: state.diameter };
   });
 
-  const scaleFactor: number | null = getScaleFactor(beamlineConfig);
+  const scaleFactor: number | null = getScaleFactorForReciprocalUnits(beamlineConfig);
 
   const { ptMin, ptMax, visibleQRange, fullQRange } = computeQrange(
     detector,

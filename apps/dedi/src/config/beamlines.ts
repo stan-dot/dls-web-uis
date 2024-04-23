@@ -18,7 +18,7 @@ const i22Isotropic: BeamlineParams = {
     },
     diameter: 310,
   },
-  angle: 90,
+  angle: 90, // degrees, unknown where to store?
   wavelength: null,
   cameraLength: 1.9,
   minWavelength: 0.062,
