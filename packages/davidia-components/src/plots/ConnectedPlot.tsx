@@ -298,6 +298,7 @@ function ConnectedPlot(props: ConnectedPlotProps) {
   const uuid = props.uuid;
 
   const plotServerURL = `ws://${props.hostname}:${props.port}/plot/${uuid}/${plotID}`;
+  console.log('plotserver url', plotServerURL);
   const { sendMessage, lastMessage, readyState, getWebSocket } = useSocketIO<BufferSource>(
     plotServerURL,
     {

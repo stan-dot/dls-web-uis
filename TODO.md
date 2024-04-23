@@ -1,7 +1,5 @@
 # Monorepo demo todo
 
-
-
 ## target tree structure
 
 - apps
@@ -10,16 +8,18 @@
     - [x] davidia-client-example
     - [x] dedi app
   - [x] TEMPLATE-nextjs-14 app
+
     - xas standards app - NOPE - for now (?)
 
   - [ ] form my small projects
-    - [ ] b18 
+    - [ ] b18
     - [ ] package comparator
     - [ ] bootstrap example
 
 also IMPORTANT - cs-web-lib - only 190 files
 
 - packages
+
   - (new)
     - utils
       - [x] download file
@@ -34,7 +34,6 @@ also IMPORTANT - cs-web-lib - only 190 files
       - [ ] from frameworks comparison
 
 - [ ] IMPORTANT - pato-frontend only 117 files
-
 
 ## acceptance tests
 
@@ -67,16 +66,17 @@ also IMPORTANT - cs-web-lib - only 190 files
   - [x] eslint
   - [x] vite config
 
-- [x] once that is fully done with splitting of some code logic into the packages https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
+- [x] once that is fully done with splitting of some code logic into the packages <https://turbo.build/repo/docs/handbook/sharing-code/internal-packages>
 
 for pnpm need to export from index.ts
 
-  - [ ] science
-    - [x] unit logic
-    - [x] ray class
-  - [ ] graph
-    - [ ] Plotter class
-    - [x] SVG eclipse
+- [ ] science
+  - [x] unit logic
+  - [x] ray class
+- [ ] graph
+
+  - [ ] Plotter class
+  - [x] SVG eclipse
 
 - [ ] regular components and files
 
@@ -92,7 +92,7 @@ for pnpm need to export from index.ts
   - [ ] plot
   - [ ] results
 
-- [ ] configure auto github pages deployment too https://turbo.build/repo/docs/ci/github-actions
+- [ ] configure auto github pages deployment too <https://turbo.build/repo/docs/ci/github-actions>
 
 - [ ] will have got one thing moved fully - too complicated at the moment, refactoring the dedi one
 
@@ -135,4 +135,4 @@ odd and possibly reject this
 
 ## old dependencies
 
-https://github.com/scijs/ndarray-concat-rows
+<https://github.com/scijs/ndarray-concat-rows>
