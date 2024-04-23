@@ -1,5 +1,5 @@
 {
-  "name": "TEMPLATE-nextjs-app",
+  "name": "xas-standards",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,10 @@
     "@repo/ui": "workspace:*",
     "next": "^14.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/vite-config": "workspace:*"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",

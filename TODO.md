@@ -8,8 +8,6 @@
   - (new)
     - graphs
       - [ ] plotting Plotter class
-    - layouts
-      - [ ] from frameworks comparison
     - [ ] IMPORTANT - pato-frontend only 117 files and only ever one developer
 
 ## to try out
@@ -52,5 +50,7 @@ https://github.com/jlalmes/trpc-openapi
   - [ ] b18
   - [ ] package comparator
   - [ ] bootstrap example
+- layouts
+  - [ ] from frameworks comparison
 
 - [ ] pato-backend only 36 files, no code reviews
