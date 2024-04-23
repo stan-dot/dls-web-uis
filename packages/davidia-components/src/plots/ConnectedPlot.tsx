@@ -1,28 +1,29 @@
 import afterFrame from 'afterframe';
 import { decode, encode } from 'messagepack';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AnyPlot from './AnyPlot.js';
+import { ReadyState, useSocketIO } from 'react-use-websocket';
+import {
+  recreateSelection,
+  type SelectionBase,
+} from '../specific-selections/utils.js';
+import type { TableData } from '../table/TableDisplay.js';
+import type { DHeatmapData } from '../utils.js';
 import {
   appendDLineData,
   calculateMultiXDomain,
   calculateMultiYDomain,
   createDAxesParameters,
-  createDLineData,
   createDImageData,
+  createDLineData,
   createDScatterData,
   createDSurfaceData,
   createDTableData,
   isHeatmapData,
   measureInteraction,
 } from '../utils.js';
-import {
-  recreateSelection,
-  type SelectionBase,
-} from '../specific-selections/utils.js';
 import type {
   AnyPlotProps,
   AxesParameters,
@@ -32,12 +33,11 @@ import type {
   HeatmapPlotProps,
   SurfacePlotProps,
 } from './AnyPlot.js';
-import type { LineData } from './LinePlot.js';
+import AnyPlot from './AnyPlot.js';
 import type { ImageData } from './ImagePlot.js';
+import type { LineData } from './LinePlot.js';
 import type { ScatterData } from './ScatterPlot.js';
 import type { SurfaceData } from './SurfacePlot.js';
-import type { TableData } from '../table/TableDisplay.js';
-import type { DHeatmapData } from '../utils.js';
 
 type MsgType =
   | 'status'
@@ -298,7 +298,7 @@ function ConnectedPlot(props: ConnectedPlotProps) {
   const uuid = props.uuid;
 
   const plotServerURL = `ws://${props.hostname}:${props.port}/plot/${uuid}/${plotID}`;
-  const { sendMessage, lastMessage, readyState, getWebSocket } = useWebSocket(
+  const { sendMessage, lastMessage, readyState, getWebSocket } = useSocketIO<BufferSource>(
     plotServerURL,
     {
       onOpen: () => {
@@ -649,15 +649,15 @@ function ConnectedPlot(props: ConnectedPlotProps) {
   const updateBaton = useRef<boolean>(false);
 
   useEffect(() => {
-    if (!lastMessage) {
-      return;
-    }
+    if (!lastMessage) return;
+
     if (readyState !== ReadyState.OPEN) {
       console.log(`${plotID}: still not open`);
     }
+    if (!lastMessage.payload) return;
 
     // eslint-disable-next-line
-    const decoded_message = decode(lastMessage.data) as DecodedMessage;
+    const decoded_message = decode(lastMessage.payload! as BufferSource) as DecodedMessage;
     console.log(
       `${plotID}: decoded_message`,
       decoded_message,
@@ -665,7 +665,7 @@ function ConnectedPlot(props: ConnectedPlotProps) {
     );
 
     const interaction = measureInteraction();
-    afterFrame(() => {
+    afterFrame.default(() => {
       interactionTime.current = interaction.end();
     });
 
@@ -772,5 +772,6 @@ export type {
   StatusType,
   SurfaceDataMessage,
   TableDataMessage,
-  UpdateSelectionsMessage,
+  UpdateSelectionsMessage
 };
+

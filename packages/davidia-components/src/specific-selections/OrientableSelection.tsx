@@ -1,4 +1,4 @@
-import { Matrix3 } from '../../node_modules/@types/three/index.js';
+import { Matrix3 } from 'three';
 import BaseSelection from '../selection-components/BaseSelection.js';
 import type { SelectionBase } from './utils.js';
 
@@ -14,7 +14,7 @@ export default class OrientableSelection extends BaseSelection {
     this.invTransform = new Matrix3().identity().rotate(this.angle);
   }
 
-  setAngle(angle: number) {
+  public setAngle(angle: number) {
     this.angle = angle;
     this.transform = new Matrix3().identity().rotate(-this.angle);
     this.invTransform = new Matrix3().identity().rotate(this.angle);
