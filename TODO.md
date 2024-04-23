@@ -17,6 +17,8 @@
     - [ ] package comparator
     - [ ] bootstrap example
 
+also IMPORTANT - cs-web-lib - only 190 files
+
 - packages
   - (new)
     - utils
@@ -30,6 +32,9 @@
       - [x] svg eclipse
     - layouts
       - [ ] from frameworks comparison
+
+- [ ] IMPORTANT - pato-frontend only 117 files
+
 
 ## acceptance tests
 
