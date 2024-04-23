@@ -11,7 +11,8 @@ import {
 import { useToggle } from '@react-hookz/web';
 import { ArcballControls } from '@react-three/drei';
 import { useState } from 'react';
-import { TbGridDots } from 'react-icons/tb';
+
+import { GridDots } from '@repo/ui/svgs'
 
 import PlotToolbar from './PlotToolbar.js';
 import type { IIconType } from '../modals/Modal.js';
@@ -92,7 +93,7 @@ function SurfacePlot(props: SurfacePlotProps) {
         <ToggleBtn
           key="show points"
           label="show points"
-          icon={TbGridDots as IIconType}
+          icon={GridDots as IIconType} // todo this import is problematic for icons
           iconOnly
           value={showPoints}
           onToggle={toggleShowPoints}
@@ -107,7 +108,7 @@ function SurfacePlot(props: SurfacePlotProps) {
         scaleType={surfaceScaleType}
         showPoints={showPoints}
       >
-        <ArcballControls />
+        <ArcballControls /> // todo this is problematic for drei imports
       </SurfaceVis>
     </div>
   );

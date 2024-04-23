@@ -1,7 +1,6 @@
 # Monorepo demo todo
 
-propaganda
-<https://vercel.com/blog/how-supabase-elevated-their-developer-experience-with-turborepo>
+
 
 ## target tree structure
 
@@ -12,6 +11,11 @@ propaganda
     - [x] dedi app
   - [x] TEMPLATE-nextjs-14 app
     - xas standards app - NOPE - for now (?)
+
+  - [ ] form my small projects
+    - [ ] b18 
+    - [ ] package comparator
+    - [ ] bootstrap example
 
 - packages
   - (new)

@@ -8,7 +8,6 @@ import {
   VisCanvas,
 } from "@h5web/lib";
 import { Card, CardContent, Stack } from "@mui/material";
-import * as mathjs from "mathjs";
 import { Vector3 } from "three";
 import { computeQrange } from "../calculations/qrange";
 import ResultsBar from "../results/resultsBar";
@@ -17,7 +16,7 @@ import {
 } from "../results/resultsStore";
 
 import { SIRange } from "@repo/science";
-import SvgAxisAlignedEllipse from "@repo/ui/svg-ellipse";
+import { SvgAxisAlignedEllipse } from "@repo/ui/svgs";
 import { useBeamstopStore } from "../stores/beamstopStore";
 import { useCameraTubeStore } from "../stores/cameraTubeStore";
 import { DetectorParamsStore, useDetectorStore } from "../stores/detectorStore";

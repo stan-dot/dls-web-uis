@@ -7,7 +7,7 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./color-picker-popover": "./src/ColorPickerPopover.tsx",
-    "./svg-ellipse": "./src/svgEllipse.tsx"
+    "./svgs": "./src/svgs/index.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
