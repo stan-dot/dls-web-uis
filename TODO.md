@@ -1,6 +1,8 @@
 # Monorepo demo todo
 
-## target tree structure
+## soon
+
+### target tree structure
 
 - apps - xas standards app - a next js app
 
@@ -10,19 +12,20 @@
       - [ ] plotting Plotter class
     - [ ] IMPORTANT - pato-frontend only 117 files and only ever one developer
 
-## to try out
+### to try out
+
 to validate types arktype - better than JOI
 <https://arktype.io/>
 
-https://github.com/jlalmes/trpc-openapi
+<https://github.com/jlalmes/trpc-openapi>
 
-## acceptance tests
+### acceptance tests
 
 - [ ] deploy UI libraries to NPM with turbo
 - [ ] deploy into kubernetes easily
 - [ ] have a working dev mode
 
-## order of works
+### order of works
 
 - [ ] graph
 
@@ -44,13 +47,25 @@ https://github.com/jlalmes/trpc-openapi
 
 - [ ] will have got one thing moved fully - too complicated at the moment, refactoring the dedi one
 
-# next stage
+## next stage
 
 - [ ] form my small projects
   - [ ] b18
   - [ ] package comparator
   - [ ] bootstrap example
 - layouts
+
   - [ ] from frameworks comparison
 
 - [ ] pato-backend only 36 files, no code reviews
+
+### TEMPLATE - app with Python backend
+
+need support for such a dual use compose and nested devcontainers?
+<https://github.com/DiamondLightSource/xchemlab/blob/main/.devcontainer/docker-compose.yaml>
+
+<https://github.com/xraypy/xraylarch>
+<https://vercel.com/templates/next.js/nextjs-fastapi-starter>
+
+in the same application - multilanguage repo
+<https://vercel.com/guides/how-to-use-python-and-javascript-in-the-same-application>
