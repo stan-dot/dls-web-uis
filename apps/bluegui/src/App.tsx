@@ -13,6 +13,7 @@ import useNotifications from "./hooks/useNotifications";
 import Tour from "./components/Tour";
 import { NotificationBell } from "./components/NotificationBell";
 import { Container, Grid, Button } from "@mui/material";
+import JsonForm from "./components/JsonForm";
 
 const App: React.FC = () => {
     const { plans, fetchPlans } = usePlans();
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             <Grid container>
                 <Sidebar plans={plans} devices={devices} />
                 <MainContent plans={plans} />
+                <JsonForm/>
             </Grid>
             <Footer />
             <NotificationBell notifications={notifications} />

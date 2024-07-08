@@ -18,4 +18,13 @@ export default defineConfig({
       // "@mui": path.resolve(__dirname, "node_modules/@mui"),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://i22-blueapi.diamond.ac.uk",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
