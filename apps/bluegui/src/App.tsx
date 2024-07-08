@@ -1,11 +1,9 @@
 // src/App.tsx
 import React from 'react';
-import { Container, Grid, Button } from '@mui/material';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 import Footer from './Footer';
-import NotificationBell from './NotificationBell';
 import WorkerStatus from './WorkerStatus';
 import TaskHistory from './TaskHistory';
 import usePlans from './hooks/usePlans';
@@ -13,6 +11,8 @@ import useDevices from './hooks/useDevices';
 import useWorkerStatus from './hooks/useWorkerStatus';
 import useNotifications from './hooks/useNotifications';
 import Tour from './Tour';
+import { NotificationBell } from './NotificationBell';
+import { Container, Grid, Button } from '@mui/material';
 
 const App: React.FC = () => {
     const { plans, fetchPlans } = usePlans();

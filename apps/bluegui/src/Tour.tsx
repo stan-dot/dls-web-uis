@@ -25,8 +25,12 @@ const steps: Step[] = [
     },
 ];
 
-const Tour: React.FC = () => {
-    const [run, setRun] = React.useState(false);
+type TourProps = {
+    runProp: boolean;
+};
+
+const Tour: React.FC = ({ runProp }: TourProps) => {
+    const [run, setRun] = React.useState(runProp);
 
     const handleJoyrideCallback = (data: CallBackProps) => {
         const { status } = data;

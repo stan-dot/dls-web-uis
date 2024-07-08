@@ -1,13 +1,13 @@
 // src/hooks/useNotifications.ts
 import { useState, useEffect, useCallback } from "react";
 
-interface Notification {
+export interface UserNotification {
   message: string;
   // other notification properties
 }
 
 const useNotifications = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<UserNotification[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
