@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material';
 import { Notifications } from '@mui/icons-material';
+import Logo from './Logo';
 
 interface HeaderProps {
   fetchPlans: () => void;
@@ -21,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({ fetchPlans, fetchDevices, fetchWorkerSt
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6">Athena</Typography>
+        <Logo />
         <IconButton>
           <Notifications />
         </IconButton>

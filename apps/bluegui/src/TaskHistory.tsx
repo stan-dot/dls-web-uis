@@ -1,21 +1,42 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from '@mui/material';
+import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import useTaskHistory from './hooks/useTaskHistory';
+
+interface Task {
+  task_id: string;
+  task: string;
+  is_complete: boolean;
+  is_pending: boolean;
+  errors: string[];
+}
 
 const TaskHistory: React.FC = () => {
-  const tasks = [
-    { id: 1, name: 'Task 1' },
-    { id: 2, name: 'Task 2' },
-    // Add more tasks here
-  ];
+  const { tasks } = useTaskHistory();
 
   return (
-    <List>
-      {tasks.map((task) => (
-        <ListItem key={task.id}>
-          <ListItemText primary={task.name} />
-        </ListItem>
-      ))}
-    </List>
+    <div className='task-history'>
+      <Typography variant="h6">Task History</Typography>
+      <List>
+        {tasks.map((task: Task) => (
+          <ListItem key={task.task_id}>
+            <ListItemText
+              primary={task.task}
+              secondary={
+                <>
+                  {task.is_complete && <Typography variant="body2" color="green">Complete</Typography>}
+                  {task.is_pending && <Typography variant="body2" color="orange">Pending</Typography>}
+                  {task.errors.length > 0 && (
+                    <Typography variant="body2" color="red">
+                      Errors: {task.errors.join(', ')}
+                    </Typography>
+                  )}
+                </>
+              }
+            />
+          </ListItem>
+        ))}
+      </List>
+    </div>
   );
 };
 

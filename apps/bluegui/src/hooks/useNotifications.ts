@@ -1,20 +1,38 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+// src/hooks/useNotifications.ts
+import { useState, useEffect, useCallback } from "react";
+
+interface Notification {
+  message: string;
+  // other notification properties
+}
 
 const useNotifications = () => {
-  const [notifications, setNotifications] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchNotifications = async () => {
-    const response = await axios.get('/api/notifications');
-    setNotifications(response.data);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(fetchNotifications, 5000); // Polling every 5 seconds
-    return () => clearInterval(interval);
+  const fetchNotifications = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch("/notifications");
+      if (!response.ok) {
+        throw new Error("Failed to fetch notifications");
+      }
+      const data = await response.json();
+      setNotifications(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  return { notifications, fetchNotifications };
+  useEffect(() => {
+    fetchNotifications();
+  }, [fetchNotifications]);
+
+  return { notifications, loading, error, fetchNotifications };
 };
 
 export default useNotifications;
