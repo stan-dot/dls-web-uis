@@ -15,7 +15,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@components": path.resolve(__dirname, "./src/components"),
-      "@mui": path.resolve(__dirname, "node_modules/@mui"),
+      // "@mui": path.resolve(__dirname, "node_modules/@mui"),
     },
   },
 });
