@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Typography, Button } from '@mui/material';
 import { PlayArrow, Pause, Stop } from '@mui/icons-material';
-import { CountButton } from './components/CountButton';
+import { Plan } from '../hooks/usePlans';
 
 interface MainContentProps {
-    plans: any[];
+    plans: Plan[];
 }
 
 const MainContent: React.FC<MainContentProps> = ({ plans }) => {
@@ -15,7 +15,6 @@ const MainContent: React.FC<MainContentProps> = ({ plans }) => {
             <Button startIcon={<Pause />}>Pause Plan</Button>
             <Button startIcon={<Stop />}>Stop Plan</Button>
             {/* Display list of plans */}
-            <CountButton />
         </Grid>
     );
 };

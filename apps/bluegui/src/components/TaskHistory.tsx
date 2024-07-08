@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Typography } from '@mui/material';
-import useTaskHistory from './hooks/useTaskHistory';
+import useTaskHistory from '../hooks/useTaskHistory';
 
 interface Task {
   task_id: string;

@@ -1,17 +1,17 @@
 // src/App.tsx
 import React from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import MainContent from './MainContent';
-import Footer from './Footer';
-import WorkerStatus from './WorkerStatus';
-import TaskHistory from './TaskHistory';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
+import WorkerStatus from './components/WorkerStatus';
+import TaskHistory from './components/TaskHistory';
 import usePlans from './hooks/usePlans';
 import useDevices from './hooks/useDevices';
 import useWorkerStatus from './hooks/useWorkerStatus';
 import useNotifications from './hooks/useNotifications';
-import Tour from './Tour';
-import { NotificationBell } from './NotificationBell';
+import Tour from './components/Tour';
+import { NotificationBell } from './components/NotificationBell';
 import { Container, Grid, Button } from '@mui/material';
 
 const App: React.FC = () => {

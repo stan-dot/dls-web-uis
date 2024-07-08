@@ -1,7 +1,7 @@
 // src/hooks/usePlans.ts
 import { useState, useEffect, useCallback } from 'react';
 
-interface Plan {
+export interface Plan {
     name: string;
     description: string;
     // other plan properties
