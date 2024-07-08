@@ -9,7 +9,7 @@ interface MainContentProps {
 
 const MainContent: React.FC<MainContentProps> = ({ plans }) => {
     return (
-        <Grid item xs={10}>
+        <Grid item xs={10} className='main-content'>
             <Typography variant="h6">Plans</Typography>
             <Button startIcon={<PlayArrow />}>Run Plan</Button>
             <Button startIcon={<Pause />}>Pause Plan</Button>

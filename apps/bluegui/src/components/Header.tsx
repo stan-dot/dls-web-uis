@@ -7,29 +7,29 @@ interface HeaderProps {
   fetchPlans: () => void;
   fetchDevices: () => void;
   fetchWorkerStatus: () => void;
+  handleStartTour: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ fetchPlans, fetchDevices, fetchWorkerStatus }) => {
+const Header: React.FC<HeaderProps> = ({ fetchPlans, fetchDevices, fetchWorkerStatus, handleStartTour }) => {
   const handleResetEnvironment = () => {
     // Reset environment logic
-  };
-
-  const handleStartTour = () => {
-    // Start tour logic
   };
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6">Athena</Typography>
+        <Typography variant="h6">BlueGUI</Typography>
         <Logo />
         <IconButton>
           <Notifications />
         </IconButton>
-        <Button onClick={handleStartTour}>Start Tour</Button>
-        <Button onClick={handleResetEnvironment}>Reset Environment</Button>
+        <Button
+          sx={{ color: 'white' }}
+          onClick={handleStartTour}>Start Tour</Button>
+        <Button
+          sx={{ color: 'white' }} className='reset-environment' onClick={handleResetEnvironment}>Reset Environment</Button>
       </Toolbar>
-    </AppBar>
+    </AppBar >
   );
 };
 

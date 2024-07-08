@@ -29,7 +29,7 @@ type TourProps = {
     runProp: boolean;
 };
 
-const Tour: React.FC = ({ runProp }: TourProps) => {
+function Tour({ runProp }: TourProps) {
     const [run, setRun] = React.useState(runProp);
 
     const handleJoyrideCallback = (data: CallBackProps) => {
