@@ -1,4 +1,4 @@
-import { Plan } from "../types";
+import { Plan } from "../hooks/usePlans";
 import Form from "./Form";
 
 type SinglePlanDisplayProps = {
@@ -14,7 +14,11 @@ export function SinglePlanDisplay({ currentPlan }: SinglePlanDisplayProps) {
       </div>
       <br />
       <br />
-      <Form schema={currentPlan.schema} />
+      {currentPlan["schema"] ? (
+        <Form schema={currentPlan.schema} />
+      ) : (
+        "no schema"
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import Select from "react-select";
-import { Plan } from "../types";
+import { Plan } from "../hooks/usePlans";
 
 type PlansMenuProps = {
   selectedOption: any;

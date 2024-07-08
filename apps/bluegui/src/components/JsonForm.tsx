@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Plan } from "../hooks/usePlans";
 import { PlansMenu } from "./PlanMenu";
 import { SinglePlanDisplay } from "./SinglePlanDisplay";
+import { Grid } from "@mui/material";
 
 interface PlansResponse {
   plans: Plan[];
 }
+
 function JsonForm() {
   const [plans, setPlans] = useState<any[]>([]);
   const [currentPlan, setPlan] = useState<any>(null);
@@ -32,37 +34,36 @@ function JsonForm() {
         console.error(e);
       });
   }, []);
+
   return (
-    <div>
-      <h1>Athena</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
-        }}
-      >
-        <div id="plans-list">
-          <h2>i22 Bluesky Plans</h2>
-          {plans.length == 0 ? (
-            <p> No plans here!</p>
-          ) : (
-            <PlansMenu
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
-              setPlan={setPlan}
-              planMap={planMap}
-              options={options}
-            />
-          )}
-        </div>
-        <div id="one-plan">
-          {currentPlan !== null && (
-            <div className="left">
-              <SinglePlanDisplay currentPlan={currentPlan} />
-            </div>
-          )}
-        </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "flex-start",
+        justifyContent: "start",
+      }}
+    >
+      <div id="plans-list" style={{ padding: "4px", margin: "4px" }}>
+        <h2>i22 Bluesky Plans</h2>
+        {plans.length == 0 ? (
+          <p> No plans here!</p>
+        ) : (
+          <PlansMenu
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            setPlan={setPlan}
+            planMap={planMap}
+            options={options}
+          />
+        )}
+      </div>
+      <div id="one-plan">
+        {currentPlan !== null && (
+          <div className="left">
+            <SinglePlanDisplay currentPlan={currentPlan} />
+          </div>
+        )}
       </div>
     </div>
   );

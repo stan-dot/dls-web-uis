@@ -3,8 +3,11 @@ import {
   materialRenderers,
 } from "@jsonforms/material-renderers";
 import { JsonForms } from "@jsonforms/react";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Alert from "@mui/material/Alert";
+import ErrorBoundary from "./ErrorBoundary";
 
 const initialData = {};
 
@@ -19,55 +22,86 @@ type FormProps = {
 
 function Form({ schema }: FormProps) {
   const [data, setData] = useState(initialData);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const submitData = async () => {
-    let payload =
-      '{"name": "' + schema.title + '","params": ' + JSON.stringify(data) + "}";
-    await fetch("/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: payload,
-    }).then(async (r) => {
-      if (r.status == 201) {
-        fetch("api/worker/task", {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const payload = {
+        name: schema.title,
+        params: data,
+      };
+
+      const response = await fetch("/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.status === 201) {
+        const task = await response.json();
+        const workerResponse = await fetch("/api/worker/task", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(await r.json()),
-        }).then((r) => {
-          if (r.status == 200) {
-            document
-              .getElementById("running")
-              ?.classList.remove("hidden", "fade-out");
+          body: JSON.stringify(task),
+        });
+
+        if (workerResponse.status === 200) {
+          const runningElement = document.getElementById("running");
+          if (runningElement) {
+            runningElement.classList.remove("hidden", "fade-out");
             setTimeout(() => {
-              document.getElementById("running")?.classList.add("fade-out");
+              runningElement.classList.add("fade-out");
             }, 1000);
           }
-        });
+        }
+      } else {
+        throw new Error("Failed to create task");
       }
-    });
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      setError("There was an error submitting the form. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <div>
-      <JsonForms
-        schema={schema}
-        data={data}
-        renderers={materialRenderers}
-        cells={materialCells}
-        onChange={({ data }) => setData(data)}
-      />
+      <ErrorBoundary>
+        <Suspense fallback={<CircularProgress />}>
+          <JsonForms
+            schema={schema}
+            data={data}
+            renderers={materialRenderers}
+            cells={materialCells}
+            onChange={({ data }) => setData(data)}
+          />
+        </Suspense>
+      </ErrorBoundary>
       <div>
         <Button
           onClick={submitData}
           color="primary"
           variant="contained"
+          disabled={loading}
           data-testid="clear-data"
         >
-          Submit
+          {loading ? <CircularProgress size={24} /> : "Submit"}
         </Button>
       </div>
+      {error && (
+        <Alert severity="error" onClose={() => setError(null)}>
+          {error}
+        </Alert>
+      )}
       <div id="running" className="hidden">
         <br />
         <span>Plan execution has started</span>

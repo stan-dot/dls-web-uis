@@ -2,7 +2,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import MainContent from "./components/MainContent";
+import PlanControlBar from "./components/MainContent";
 import Footer from "./components/Footer";
 import WorkerStatus from "./components/WorkerStatus";
 import TaskHistory from "./components/TaskHistory";
@@ -16,32 +16,32 @@ import { Container, Grid, Button } from "@mui/material";
 import JsonForm from "./components/JsonForm";
 
 const App: React.FC = () => {
-    const { plans, fetchPlans } = usePlans();
-    const { devices, fetchDevices } = useDevices();
-    const { status, fetchWorkerStatus } = useWorkerStatus();
-    const { notifications, fetchNotifications } = useNotifications();
-    const [runTour, setRunTour] = React.useState(false);
+  const { plans, fetchPlans } = usePlans();
+  const { devices, fetchDevices } = useDevices();
+  const { status, fetchWorkerStatus } = useWorkerStatus();
+  const { notifications, fetchNotifications } = useNotifications();
+  const [runTour, setRunTour] = React.useState(false);
 
-    return (
-        <Container>
-            <Header
-                fetchPlans={fetchPlans}
-                fetchDevices={fetchDevices}
-                fetchWorkerStatus={fetchWorkerStatus}
-                handleStartTour={() => setRunTour(true)}
-            />
-            <Grid container>
-                <Sidebar plans={plans} devices={devices} />
-                <MainContent plans={plans} />
-                <JsonForm/>
-            </Grid>
-            <Footer />
-            <NotificationBell notifications={notifications} />
-            <WorkerStatus status={status} />
-            <TaskHistory />
-            <Tour runProp={runTour} />
-        </Container>
-    );
+  return (
+    <Container>
+      <Header
+        fetchPlans={fetchPlans}
+        fetchDevices={fetchDevices}
+        fetchWorkerStatus={fetchWorkerStatus}
+        handleStartTour={() => setRunTour(true)}
+      />
+      <Grid container>
+        <Sidebar plans={plans} devices={devices} />
+        <PlanControlBar plans={plans} />
+        {/* <JsonForm/> */}
+      </Grid>
+      <Footer />
+      <NotificationBell notifications={notifications} />
+      <WorkerStatus status={status} />
+      <TaskHistory />
+      <Tour runProp={runTour} />
+    </Container>
+  );
 };
 
 export default App;
