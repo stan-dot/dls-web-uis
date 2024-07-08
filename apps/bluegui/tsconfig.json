@@ -2,7 +2,7 @@
   "extends": "@repo/typescript-config/vite.json",
   "include": [
     "src",
-    "src/**/*.ts",
+    "src/**/*.ts", "src/MainPanel.tsx",
   ],
   "exclude": ["node_modules"]
 }
