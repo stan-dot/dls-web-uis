@@ -39,7 +39,7 @@ const App: React.FC = () => {
       <NotificationBell notifications={notifications} />
       <WorkerStatus status={status} />
       <TaskHistory />
-      <Tour runProp={runTour} />
+      <Tour runProp={true} />
     </Container>
   );
 };
